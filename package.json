@@ -1,0 +1,42 @@
+{
+  "name": "home-work-test",
+  "version": "1.0.0",
+  "description": "environment setting",
+  "source": "./index.ts",
+  "module": "./build/main.js",
+  "types": "./build/types.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "build": "parcel build --no-source-maps --no-cache",
+    "watch": "parcel watch",
+    "eslint": "eslint .",
+    "format": "npx prettier --write .",
+    "tsbuild": "tsc"
+  },
+  "keywords": [
+    "TS",
+    "JS",
+    "tasks for home-work"
+  ],
+  "author": "Vladislav <pixel.develop@yandex.ru>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.6",
+    "@babel/preset-env": "^7.19.4",
+    "@parcel/packager-ts": "^2.7.0",
+    "@parcel/transformer-typescript-types": "^2.7.0",
+    "@types/jest": "^29.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "babel-jest": "^29.2.0",
+    "eslint": "^8.25.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.0",
+    "jest": "^29.1.2",
+    "parcel": "^2.7.0",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  }
+}
