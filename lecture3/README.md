@@ -2,11 +2,19 @@
 
 ## Основные модули.
 
+**Динамический массив (Вектор):** [_перейти_](./vector-dynamic-array/modules/vector.ts)
+
 **Динамический массив на связанном списке с возможностью итерации:** [_перейти_](./iterable-dynamic-array/modules/dynamic-array.ts)
 
 ## Тесты.
 
-1. Для динамического массива с возможностью итерации:
+1. Для динамического массива (Вектор):
+
+```
+npx jest ./lecture3/vector-dynamic-array/tests/vector.spec.ts
+```
+
+2. Для динамического массива с возможностью итерации:
 
 ```
 npx jest ./lecture3/iterable-dynamic-array/tests/dynamic-array.spec.ts
