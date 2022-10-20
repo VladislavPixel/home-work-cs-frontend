@@ -5,6 +5,8 @@ import DecQueue from "./lecture1/task3dec-queue/module/dec-queue";
 import Stack from "./lecture1/task4stack/module/stack";
 import Structure from "./lecture1/task5structure/module/structure";
 import Vector from "./lecture3/vector-dynamic-array/modules/vector";
+import IterableDynamicArray from "./lecture3/iterable-dynamic-array/modules/dynamic-array";
+
 
 export {
   LinkedListWithIterator,
@@ -13,5 +15,6 @@ export {
   DecQueue,
   Stack,
   Structure,
-  Vector
+  Vector,
+  IterableDynamicArray
 };
