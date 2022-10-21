@@ -1,87 +1,98 @@
-import type { ILinkedList, INode } from "../types/interfaces";
+import type { ILinkedList } from "../types/interfaces";
 import LinkedList from "../modules/linked-list";
 import Node from "../modules/node";
+import IteratorLinkedList from "../modules/iterator-linked-list";
 
-describe("Проверяю модуль связанного списка - LinkedList: ", () => {
+describe("Проверка модуля - LinkedList:", () => {
   test("Создаю экземпляр.", () => {
-    const list: ILinkedList = new LinkedList(3);
+    const list: ILinkedList = new LinkedList();
 
-    expect(list.total).toBe(0);
-    expect(list.addLast).toBeDefined();
-    expect(list.findElementByIndex).toBeDefined();
+    expect(list.first).toBeNull();
+    expect(list.last).toBeNull();
+    expect(list.add).toBeDefined();
+    expect(list.addFirst).toBeDefined();
+    expect(list.deleteFirst).not.toBe(undefined);
+    expect(list.deleteLast).toBeDefined();
+    expect(list.findNodeByValue).toBeDefined();
+    expect(list.display).toBeDefined();
   });
 
-  test("Добавляю элементы в список с 0 capacityValueForArr.", () => {
-    const list: ILinkedList = new LinkedList(0);
+  test("Добавляю элемент в начало.", () => {
+    const list: ILinkedList = new LinkedList();
 
-    expect(() => list.addLast(100)).toThrow(
-      "method `addLast` is not supported in LinkedList with 0 capacity array"
+    expect(list.addFirst(255)).toBe(1);
+    expect(list.addFirst(600)).toBe(2);
+    expect(list.first!.value).toBe(600);
+    expect(list.first!.next!.value).toBe(255);
+  });
+
+  test("Добавляю элемент в конец.", () => {
+    const list: ILinkedList = new LinkedList();
+
+    expect(list.add(777)).toBe(1);
+    expect(list.add(888)).toBe(2);
+    expect(list.add(10000)).toBe(3);
+    expect(list.first!.value).toBe(777);
+    expect(list.first!.next!.value).toBe(888);
+  });
+
+  test("Удаляю первый элемент.", () => {
+    const list: ILinkedList = new LinkedList();
+
+    expect(() => list.deleteFirst()).toThrow(
+      "LinkedList is Empty, operation `deleteFirst` is not supported!"
     );
+
+    list.add(155);
+    list.add(200);
+
+    expect(list.deleteFirst().value).toBe(155);
+    expect(list.deleteFirst().value).toBe(200);
   });
 
-  test("Добавляю элементы в список не с нулевым capacityValueForArr.", () => {
-    const list: ILinkedList = new LinkedList(3);
+  test("Удаляю последний элемент.", () => {
+    const list: ILinkedList = new LinkedList();
 
-    const node: INode = new Node(3);
-    [500, 1000, 3].forEach((value, index) => {
-      node.value[index] = value;
-    });
+    expect(() => list.deleteLast()).toThrow(
+      "LinkedList is Empty, operation `deleteLast` is not supported!"
+    );
 
-    const node2: INode = new Node(3);
-    [5, 13, 22].forEach((value, index) => {
-      node2.value[index] = value;
-    });
+    list.add(900);
+    list.addFirst(25);
 
-    const node3: INode = new Node(3);
-    node3.value[0] = 777;
-
-    expect(list.addLast(500)).toBe(1);
-    expect(list.addLast(1000)).toBe(2);
-    expect(list.addLast(3)).toBe(3);
-
-    expect(list.first).toEqual(node);
-    expect(list.tail).toEqual(node);
-
-    expect(list.addLast(5)).toBe(4);
-    expect(list.addLast(13)).toBe(5);
-    expect(list.addLast(22)).toBe(6);
-
-    expect(list.tail).toEqual(node2);
-    node.next = node2;
-    expect(list.first).toEqual(node);
-
-    expect(list.addLast(777)).toBe(7);
-
-    expect(list.tail).toEqual(node3);
-    node2.next = node3;
-    expect(list.first).toEqual(node);
-
-    expect(list.total).toBe(7);
+    expect(list.deleteLast().value).toBe(900);
+    expect(list.deleteLast().value).toBe(25);
   });
 
-  test("Получаю значение из LinkedList по индексу.", () => {
-    const list: ILinkedList = new LinkedList(3);
+  test("Ищу узел со значением 666 и узел со значением 1.", () => {
+    const list: ILinkedList = new LinkedList();
 
-    list.addLast(500);
-    list.addLast(1000);
-    list.addLast(3);
-    list.addLast(5);
-    list.addLast(13);
-    list.addLast(22);
+    expect(() => list.findNodeByValue(666)).toThrow(
+      "LinkedList is Empty, operation `findNodeByValue` is not supported!"
+    );
 
-    expect(list.total).toBe(6);
+    list.add(155);
+    list.add(33);
+    list.add(666);
 
-    expect(list.findElementByIndex(5)).toBe(22);
-    expect(list.findElementByIndex(4)).toBe(13);
-    expect(list.findElementByIndex(3)).toBe(5);
-    expect(list.findElementByIndex(2)).toBe(3);
-    expect(list.findElementByIndex(1)).toBe(1000);
-    expect(list.findElementByIndex(0)).toBe(500);
+    expect(list.findNodeByValue(666)!.value).toBe(666);
+    expect(list.findNodeByValue(1)).toBeNull();
+  });
 
-    expect(list.findElementByIndex(100)).toBeUndefined();
-    expect(list.findElementByIndex(-1)).toBeUndefined();
-    expect(list.findElementByIndex(6)).toBe(undefined);
+  test("Вызываю метод display у связанного списка.", () => {
+    const list: ILinkedList = new LinkedList();
 
-    expect(list.findElementByIndex(3)).toBe(5);
+    const displayNodeMock = jest.spyOn(Node.prototype, "displayNode");
+    const nextMock = jest.spyOn(IteratorLinkedList.prototype, "next");
+
+    list.add(1);
+    list.add(5);
+    list.add(12234);
+    list.add(999);
+
+    list.display();
+
+    expect(displayNodeMock).toHaveBeenCalledTimes(4);
+    expect(nextMock).toHaveBeenCalledTimes(5);
   });
 });

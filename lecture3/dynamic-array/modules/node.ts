@@ -3,11 +3,22 @@ import type { INode } from "../types/interfaces";
 class Node<T> implements INode<T> {
   next: null | INode<T>;
 
-  value: T[];
+  prev: null | INode<T>;
 
-  constructor(capacityValue: number) {
+  value: T;
+
+  constructor(newValue: T) {
     this.next = null;
-    this.value = new Array(capacityValue);
+    this.prev = this.next;
+    this.value = newValue;
+  }
+
+  displayNode(): string {
+    const message = `element value: ${this.value};`;
+
+    console.log(message);
+
+    return message;
   }
 }
 

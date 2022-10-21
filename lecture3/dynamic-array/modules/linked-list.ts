@@ -1,104 +1,134 @@
+import type {
+  INode,
+  ILinkedList,
+  IIteratorLinkedList
+} from "../types/interfaces";
 import Node from "./node";
-import type { ILinkedList, INode } from "../types/interfaces";
-
-interface TypeForResultNextMethod<T> {
-  value: undefined | T;
-  currentIndex: number;
-}
-
-interface TypeForResultGetIteratorMethod<T> {
-  next(): TypeForResultNextMethod<T>;
-}
+import IteratorLinkedList from "./iterator-linked-list";
 
 class LinkedList<T> implements ILinkedList<T> {
-  #capacityArr: number;
+  first: null | INode<T | T[]>;
 
-  #counterForTailNode: number;
+  last: null | INode<T | T[]>;
 
-  total: number;
+  #total: number;
 
-  first: INode<T>;
-
-  tail: INode<T>;
-
-  constructor(capacityValueForArr: number) {
-    this.#capacityArr = capacityValueForArr;
-    this.#counterForTailNode = -1;
-    this.total = 0;
-    this.first = new Node(capacityValueForArr);
-    this.tail = this.first;
+  [Symbol.iterator](): IIteratorLinkedList<T> {
+    return new IteratorLinkedList(this);
   }
 
-  addLast(newValue: T): number {
-    if (this.#capacityArr === 0) {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.#total = 0;
+  }
+
+  get length(): number {
+    return this.#total;
+  }
+
+  addFirst(valueForNewNode: T | T[]): number {
+    const newNode = new Node(valueForNewNode);
+
+    if (this.#total === 0) {
+      this.last = newNode;
+    } else if (this.first) {
+      this.first.prev = newNode;
+      newNode.next = this.first;
+    }
+
+    this.first = newNode;
+    this.#total++;
+
+    return this.#total;
+  }
+
+  add(valueForNewNode: T | T[]): number {
+    const newNode = new Node(valueForNewNode);
+
+    if (this.#total === 0) {
+      this.first = newNode;
+    } else if (this.last) {
+      newNode.prev = this.last;
+      this.last.next = newNode;
+    }
+
+    this.last = newNode;
+    this.#total++;
+
+    return this.#total;
+  }
+
+  deleteFirst(): INode<T | T[]> {
+    if (this.first === null) {
       throw new Error(
-        "method `addLast` is not supported in LinkedList with 0 capacity array"
+        "LinkedList is Empty, operation `deleteFirst` is not supported!"
       );
     }
 
-    if (this.#counterForTailNode === this.#capacityArr - 1) {
-      const newNode = new Node<T>(this.#capacityArr);
+    const deletedFirstElement = this.first;
 
-      this.tail.next = newNode;
-
-      this.tail = newNode;
-
-      this.#counterForTailNode = -1;
+    if (this.first.next) {
+      this.first = this.first.next;
+      this.first.prev = null;
+    } else {
+      this.first = null;
+      this.last = null;
     }
 
-    this.#counterForTailNode++;
+    this.#total--;
 
-    this.tail.value[this.#counterForTailNode] = newValue;
-
-    this.total++;
-
-    return this.total;
+    return deletedFirstElement;
   }
 
-  #getIterator(): TypeForResultGetIteratorMethod<T> {
-    let currentNode = this.first;
-
-    let indexForArr = 0;
-
-    let currentIndex = 0;
-
-    const next = (): TypeForResultNextMethod<T> => {
-      let result;
-
-      if (currentIndex < this.total) {
-        result = { value: currentNode.value[indexForArr], currentIndex };
-
-        currentIndex++;
-
-        indexForArr++;
-
-        if (indexForArr === this.#capacityArr) {
-          if (this.first.next) currentNode = this.first.next;
-
-          indexForArr = 0;
-        }
-      } else {
-        result = { value: undefined, currentIndex };
-      }
-
-      return result;
-    };
-
-    return { next };
-  }
-
-  findElementByIndex(indexForElement: number): undefined | T {
-    const iterator = this.#getIterator();
-
-    for (let m = 0; m < this.total; m++) {
-      const result = iterator.next();
-
-      if (result.currentIndex === indexForElement) {
-        return result.value;
-      }
+  deleteLast(): INode<T | T[]> {
+    if (this.last === null) {
+      throw new Error(
+        "LinkedList is Empty, operation `deleteLast` is not supported!"
+      );
     }
 
-    return undefined;
+    const deletedElement = this.last;
+
+    if (this.last.prev) {
+      this.last = this.last.prev;
+      this.last.next = null;
+    } else {
+      this.first = null;
+      this.last = null;
+    }
+
+    this.#total--;
+
+    return deletedElement;
+  }
+
+  findNodeByValue(searchValue: T): null | undefined | INode<T | T[]> {
+    if (this.#total === 0) {
+      throw new Error(
+        "LinkedList is Empty, operation `findNodeByValue` is not supported!"
+      );
+    }
+
+    const iterator = this[Symbol.iterator]();
+
+    for (const node of iterator) {
+      if (node!.value === searchValue) return node;
+    }
+
+    return null;
+  }
+
+  display(): void {
+    if (this.#total === 0) {
+      throw new Error(
+        "LinkedList is Empty, operation `display` is not supported!"
+      );
+    }
+
+    const iterator = this[Symbol.iterator]();
+
+    for (const node of iterator) node!.displayNode();
   }
 }
 
