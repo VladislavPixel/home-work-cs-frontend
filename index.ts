@@ -7,6 +7,8 @@ import Structure from "./lecture1/task5structure/module/structure";
 import HashMap from "./lecture3/hash-map-1/modules/hash-map";
 import Vector from "./lecture3/vector-dynamic-array/modules/vector";
 import IterableDynamicArray from "./lecture3/iterable-dynamic-array/modules/dynamic-array";
+import binarySearch from "./lecture3/binary-search/binary-search";
+import recBinarySearch from "./lecture3/binary-search/rec-binary-search";
 
 export {
   LinkedListWithIterator,
@@ -17,5 +19,7 @@ export {
   Structure,
   HashMap,
   Vector,
-  IterableDynamicArray
+  IterableDynamicArray,
+  binarySearch,
+  recBinarySearch
 };
