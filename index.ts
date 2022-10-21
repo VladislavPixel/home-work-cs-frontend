@@ -6,7 +6,7 @@ import Stack from "./lecture1/task4stack/module/stack";
 import Structure from "./lecture1/task5structure/module/structure";
 import Vector from "./lecture3/vector-dynamic-array/modules/vector";
 import IterableDynamicArray from "./lecture3/iterable-dynamic-array/modules/dynamic-array";
-
+import HashMapWithIterator from "./lecture3/hash-map-with-keys/modules/hash-map";
 
 export {
   LinkedListWithIterator,
@@ -16,5 +16,6 @@ export {
   Stack,
   Structure,
   Vector,
-  IterableDynamicArray
+  IterableDynamicArray,
+  HashMapWithIterator
 };
