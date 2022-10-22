@@ -1,4 +1,4 @@
-import LinkedListWithIterator from "./lecture1/task1.1linked-list/modules/linked-list";
+import LinkedListWithIterator from "./lecture1/task1.1linked-list/modules/iterator-linked-list";
 import LinkedList from "./lecture1/task1linked-list/modules/linked-list";
 import Queue from "./lecture1/task2queue/module/queue";
 import DecQueue from "./lecture1/task3dec-queue/module/dec-queue";
