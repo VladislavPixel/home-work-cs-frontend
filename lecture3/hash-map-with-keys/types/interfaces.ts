@@ -1,5 +1,5 @@
 import type { TypeResultNext } from "../modules/iterator";
-import type { TypeResultNextForHashMapIterator } from "../modules/iterator-hash-map";
+import type { TypeResultNextForHashMapIteratorWithKey } from "../modules/iterator-hash-map-with-key";
 
 export interface INode<A = unknown> {
   key: string;
@@ -18,15 +18,14 @@ export interface ILinkedList<A = unknown> {
   addFirst(key: string, value: A): number;
 }
 
-export interface IIteratorHashMap<A = unknown> {
-  [Symbol.iterator](): IIteratorHashMap<A>;
-  next(): TypeResultNextForHashMapIterator<A>;
+export interface IIteratorHashMapWithKey<A = unknown> {
+  [Symbol.iterator](): IIteratorHashMapWithKey<A>;
+  next(): TypeResultNextForHashMapIteratorWithKey;
 }
 
 export interface IHashMap<A = unknown> {
   get length(): number;
   set(key: unknown, value: A): number;
   get(key: unknown): undefined | A;
-  [Symbol.iterator](status?: string | undefined): IIteratorHashMap<A>;
-  keys(): IIteratorHashMap<A>;
+  keys(): IIteratorHashMapWithKey<A>;
 }

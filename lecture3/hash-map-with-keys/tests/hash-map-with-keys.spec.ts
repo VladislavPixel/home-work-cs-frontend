@@ -1,7 +1,6 @@
 import HashMap from "../modules/hash-map";
 import LinkedList from "../modules/linked-list";
-import IteratorHashMap from "../modules/iterator-hash-map";
-import type { IHashMap } from "../types/interfaces";
+import type { IHashMap, IIteratorHashMapWithKey } from "../types/interfaces";
 
 describe("Проверяю HashMap: ", () => {
   afterAll(() => {
@@ -15,7 +14,6 @@ describe("Проверяю HashMap: ", () => {
     expect(map.set).toBeDefined();
     expect(map.length).toBeDefined();
     expect(map.length).toBe(0);
-    expect(map[Symbol.iterator]).toBeDefined();
     expect(map.keys).toBeDefined();
   });
 
@@ -43,19 +41,7 @@ describe("Проверяю HashMap: ", () => {
     expect(map.get("car")).toBeUndefined();
   });
 
-  test("Итерирую HashMap в цикле.", () => {
-    const nextMock = jest.spyOn(IteratorHashMap.prototype, "next");
-
-    const map: IHashMap = new HashMap();
-
-    for (const nodeInfo of map) {
-      console.log(nodeInfo);
-    }
-
-    expect(nextMock).toBeCalled();
-  });
-
-  test("Вызываю метод .keys().", () => {
+  test("Вызываю метод .keys() с итерацией.", () => {
     const map: IHashMap = new HashMap();
 
     expect([...map.keys()]).toEqual([]);
@@ -66,5 +52,18 @@ describe("Проверяю HashMap: ", () => {
     map.set({ vvv: 145 }, "pixel.");
 
     expect([...map.keys()]).toEqual(["155", "name", '{"vvv":145}', "age"]);
+  });
+
+  test("Вызываю метод .keys() без итерации.", () => {
+    const map: IHashMap = new HashMap();
+
+    map.set("name", "Vladislav");
+    map.set(155, 71);
+
+    const iterator: IIteratorHashMapWithKey = map.keys();
+
+    expect(iterator.next()).toEqual({ value: "155", done: false });
+    expect(iterator.next()).toEqual({ value: "name", done: false });
+    expect(iterator.next()).toEqual({ value: undefined, done: true });
   });
 });

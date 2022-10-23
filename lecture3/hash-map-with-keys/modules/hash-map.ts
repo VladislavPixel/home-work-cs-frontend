@@ -1,10 +1,10 @@
 import type {
   IHashMap,
   ILinkedList,
-  IIteratorHashMap
+  IIteratorHashMapWithKey
 } from "../types/interfaces";
 import LinkedList from "./linked-list";
-import IteratorHashMap from "./iterator-hash-map";
+import IteratorHashMapWithKey from "./iterator-hash-map-with-key";
 
 class HashMap<A> implements IHashMap<A> {
   #capacityInternalArray: number;
@@ -68,12 +68,12 @@ class HashMap<A> implements IHashMap<A> {
     return undefined;
   }
 
-  [Symbol.iterator](status?: string | undefined): IIteratorHashMap<A> {
-    return new IteratorHashMap(this.#internalArray, this.#length, status);
+  #getIteratorWithKey(): IIteratorHashMapWithKey<A> {
+    return new IteratorHashMapWithKey(this.#internalArray, this.#length);
   }
 
-  keys(): IIteratorHashMap<A> {
-    return this[Symbol.iterator]("onlyKeys");
+  keys(): IIteratorHashMapWithKey<A> {
+    return this.#getIteratorWithKey();
   }
 }
 
