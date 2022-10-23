@@ -24,6 +24,6 @@ export {
   Vector,
   IterableDynamicArray,
   binarySearch,
-	recBinarySearch,
-	BinaryTreeSetWithIterators
+  recBinarySearch,
+  BinaryTreeSetWithIterators
 };

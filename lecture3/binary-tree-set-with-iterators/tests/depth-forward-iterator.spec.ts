@@ -9,10 +9,7 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator: ITraversalIterator = new DepthForwardIterator(
-      treeNode,
-      1
-    );
+    const iterator: ITraversalIterator = new DepthForwardIterator(treeNode, 1);
 
     expect(iterator[Symbol.iterator]).toBeDefined();
     expect(iterator.next).toBeDefined();
@@ -29,14 +26,8 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator1: ITraversalIterator = new DepthForwardIterator(
-      treeNode,
-      2
-    );
-    const iterator2: ITraversalIterator = new DepthForwardIterator(
-      treeNode,
-      2
-    );
+    const iterator1: ITraversalIterator = new DepthForwardIterator(treeNode, 2);
+    const iterator2: ITraversalIterator = new DepthForwardIterator(treeNode, 2);
 
     expect(iterator1[Symbol.iterator]()).toEqual(iterator2);
   });
@@ -58,10 +49,7 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator: ITraversalIterator = new DepthForwardIterator(
-      treeNode,
-      2
-    );
+    const iterator: ITraversalIterator = new DepthForwardIterator(treeNode, 2);
 
     expect(iterator.next()).toEqual({ value: 155, done: false });
     expect(iterator.next()).toEqual({ value: 200, done: false });
@@ -81,10 +69,7 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator: ITraversalIterator = new DepthForwardIterator(
-      treeNode,
-      2
-    );
+    const iterator: ITraversalIterator = new DepthForwardIterator(treeNode, 2);
 
     for (const value of iterator) {
       console.log(value);

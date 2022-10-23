@@ -10,14 +10,14 @@ export interface TypeNextResultForIterators<T = unknown> {
 }
 
 export interface ITraversalIterator<T = unknown> {
-	[Symbol.iterator](): ITraversalIterator<T>;
-	next(): TypeNextResultForIterators<T>;
+  [Symbol.iterator](): ITraversalIterator<T>;
+  next(): TypeNextResultForIterators<T>;
 }
 
 export interface IBinaryTreeSet<T = unknown> {
-	has(searchValue: T): boolean;
-	getIteratorForDirectDepthTraversal(): ITraversalIterator<T>;
-	getIteratorForBreadthTraversal(): ITraversalIterator<T>;
-	getIteratorForSymmetricalTraversal(): ITraversalIterator<T>;
-	getIteratorForReverseTraversal(): ITraversalIterator<T>;
+  has(searchValue: T): boolean;
+  getIteratorForDirectDepthTraversal(): ITraversalIterator<T>;
+  getIteratorForBreadthTraversal(): ITraversalIterator<T>;
+  getIteratorForSymmetricalTraversal(): ITraversalIterator<T>;
+  getIteratorForReverseTraversal(): ITraversalIterator<T>;
 }

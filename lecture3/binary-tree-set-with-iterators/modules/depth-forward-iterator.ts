@@ -1,4 +1,8 @@
-import type { ITraversalIterator, ITreeNode, TypeNextResultForIterators } from "../types/interfaces";
+import type {
+  ITraversalIterator,
+  ITreeNode,
+  TypeNextResultForIterators
+} from "../types/interfaces";
 
 class DepthForwardIterator<T> implements ITraversalIterator<T> {
   #length: number;

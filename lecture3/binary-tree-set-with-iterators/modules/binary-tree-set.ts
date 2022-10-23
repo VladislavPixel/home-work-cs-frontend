@@ -1,7 +1,7 @@
 import type {
   IBinaryTreeSet,
   ITreeNode,
-	ITraversalIterator
+  ITraversalIterator
 } from "../types/interfaces";
 import TreeNode from "./tree-node";
 import DepthForwardIterator from "./depth-forward-iterator";
@@ -56,23 +56,23 @@ class BinaryTreeSet<T> implements IBinaryTreeSet<T> {
         }
       }
     }
-	}
+  }
 
-	getIteratorForBreadthTraversal(): ITraversalIterator<T> {
-		return new IteratorToWidth(this.#root, this.#length);
-	}
+  getIteratorForBreadthTraversal(): ITraversalIterator<T> {
+    return new IteratorToWidth(this.#root, this.#length);
+  }
 
   getIteratorForDirectDepthTraversal(): ITraversalIterator<T> {
     return new DepthForwardIterator(this.#root, this.#length);
-	}
-	
-	getIteratorForSymmetricalTraversal(): ITraversalIterator<T> {
-		return new SymmetricalIterator(this.#root, this.#length);
-	}
+  }
 
-	getIteratorForReverseTraversal(): ITraversalIterator<T> {
-		return new ReverseIterator(this.#root, this.#length);
-	}
+  getIteratorForSymmetricalTraversal(): ITraversalIterator<T> {
+    return new SymmetricalIterator(this.#root, this.#length);
+  }
+
+  getIteratorForReverseTraversal(): ITraversalIterator<T> {
+    return new ReverseIterator(this.#root, this.#length);
+  }
 
   has(searchValue: T): boolean {
     if (this.#length === 0) {

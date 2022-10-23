@@ -9,10 +9,7 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator: ITraversalIterator = new ReverseIterator(
-      treeNode,
-      1
-    );
+    const iterator: ITraversalIterator = new ReverseIterator(treeNode, 1);
 
     expect(iterator[Symbol.iterator]).toBeDefined();
     expect(iterator.next).toBeDefined();
@@ -29,14 +26,8 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator1: ITraversalIterator = new ReverseIterator(
-      treeNode,
-      2
-    );
-    const iterator2: ITraversalIterator = new ReverseIterator(
-      treeNode,
-      2
-    );
+    const iterator1: ITraversalIterator = new ReverseIterator(treeNode, 2);
+    const iterator2: ITraversalIterator = new ReverseIterator(treeNode, 2);
 
     expect(iterator1[Symbol.iterator]()).toEqual(iterator2);
   });
@@ -52,34 +43,31 @@ describe("Проверяю итератор, который реализует �
       value: -432,
       left: {
         value: 0,
-				left: {
-					value: 2,
-					left: null,
-					right: null
-				},
-				right: {
-					value: 3,
-					left: null,
-					right: null
-				}
+        left: {
+          value: 2,
+          left: null,
+          right: null
+        },
+        right: {
+          value: 3,
+          left: null,
+          right: null
+        }
       },
-			right: {
-				value: 1,
-				left: null,
-				right: null
-			}
+      right: {
+        value: 1,
+        left: null,
+        right: null
+      }
     };
 
-    const iterator: ITraversalIterator = new ReverseIterator(
-      treeNode,
-      5
-    );
+    const iterator: ITraversalIterator = new ReverseIterator(treeNode, 5);
 
     expect(iterator.next()).toEqual({ value: 2, done: false });
-		expect(iterator.next()).toEqual({ value: 3, done: false });
-		expect(iterator.next()).toEqual({ value: 0, done: false });
-		expect(iterator.next()).toEqual({ value: 1, done: false });
-		expect(iterator.next()).toEqual({ value: -432, done: false });
+    expect(iterator.next()).toEqual({ value: 3, done: false });
+    expect(iterator.next()).toEqual({ value: 0, done: false });
+    expect(iterator.next()).toEqual({ value: 1, done: false });
+    expect(iterator.next()).toEqual({ value: -432, done: false });
     expect(iterator.next()).toEqual({ value: undefined, done: true });
   });
 
@@ -96,10 +84,7 @@ describe("Проверяю итератор, который реализует �
       right: null
     };
 
-    const iterator: ITraversalIterator = new ReverseIterator(
-      treeNode,
-      2
-    );
+    const iterator: ITraversalIterator = new ReverseIterator(treeNode, 2);
 
     for (const value of iterator) {
       console.log(value);
