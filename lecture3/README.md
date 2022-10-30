@@ -12,6 +12,8 @@
 
 **Функция бинарного поиска:** [_перейти_](./binary-search/binary-search.ts)
 
+**B-Tree (Б-дерево):** [_перейти_](./b-tree/modules/b-tree.ts)
+
 ## Тесты.
 
 1. Для динамического массива:
@@ -48,4 +50,10 @@ npx jest ./lecture3/binary-search/tests/binary-search.spec.ts
 
 ```
 npx jest ./lecture3/binary-search/tests/rec-binary-search.spec.ts
+```
+
+6. Для Б-дерева (B-Tree):
+
+```
+npx jest ./lecture3/b-tree/tests/b-tree.spec.ts
 ```
