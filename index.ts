@@ -10,6 +10,7 @@ import Vector from "./lecture3/vector-dynamic-array/modules/vector";
 import IterableDynamicArray from "./lecture3/iterable-dynamic-array/modules/dynamic-array";
 import binarySearch from "./lecture3/binary-search/binary-search";
 import recBinarySearch from "./lecture3/binary-search/rec-binary-search";
+import BTree from "./lecture3/b-tree/modules/b-tree";
 
 export {
   LinkedListWithIterator,
@@ -23,5 +24,6 @@ export {
   Vector,
   IterableDynamicArray,
   binarySearch,
-  recBinarySearch
+  recBinarySearch,
+  BTree
 };
