@@ -8,6 +8,7 @@ import DynamicArray from "./lecture3/dynamic-array/modules/dynamic-array";
 import HashMap from "./lecture3/hash-map-1/modules/hash-map";
 import Vector from "./lecture3/vector-dynamic-array/modules/vector";
 import IterableDynamicArray from "./lecture3/iterable-dynamic-array/modules/dynamic-array";
+import HashMapWithIterator from "./lecture3/hash-map-with-keys/modules/hash-map";
 import binarySearch from "./lecture3/binary-search/binary-search";
 import recBinarySearch from "./lecture3/binary-search/rec-binary-search";
 
@@ -22,6 +23,7 @@ export {
   HashMap,
   Vector,
   IterableDynamicArray,
+  HashMapWithIterator,
   binarySearch,
   recBinarySearch
 };
