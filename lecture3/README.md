@@ -14,6 +14,8 @@
 
 **Функция бинарного поиска:** [_перейти_](./binary-search/binary-search.ts)
 
+**Бинарное дерево, которое работает как множество Set:** [_перейти_](./binary-tree-set/modules/binary-tree-set.ts)
+
 ## Тесты.
 
 1. Для динамического массива:
@@ -56,4 +58,10 @@ npx jest ./lecture3/binary-search/tests/binary-search.spec.ts
 
 ```
 npx jest ./lecture3/binary-search/tests/rec-binary-search.spec.ts
+```
+
+6. Для бинарного дерева, которое работает как множество Set.
+
+```
+npx jest ./lecture3/binary-tree-set/tests/binary-tree-set.spec.ts
 ```
