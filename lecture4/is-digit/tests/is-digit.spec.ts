@@ -7,6 +7,7 @@ describe("Проверяю функцию isDigit:", () => {
     expect(isDigit("ⅩⅩⅧ")).toBe(true);
     expect(isDigit("𑁦𑁧𑁩𑁯")).toBe(true);
     expect(isDigit("৯৩৬")).toBe(true);
+    expect(isDigit("፼፵፫")).toBe(true);
   });
 
   test("Вызываю функцию со значениями, которые вернут false.", () => {
