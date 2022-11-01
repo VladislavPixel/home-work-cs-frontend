@@ -27,9 +27,9 @@ describe("Проверяю функцию binarySearchForIsDigitFn:", () => {
 
     expect(binarySearchForIsDigitFn(49, arrRanges)).toBe(0);
     expect(binarySearchForIsDigitFn(69743, arrRanges)).toBe(4);
-    expect(binarySearchForIsDigitFn(8548, arrRanges)).toBe(0);
-    expect(binarySearchForIsDigitFn(2540, arrRanges)).toBe(0);
-    expect(binarySearchForIsDigitFn(4980, arrRanges)).toBe(0);
+    expect(binarySearchForIsDigitFn(8548, arrRanges)).toBe(3);
+    expect(binarySearchForIsDigitFn(2540, arrRanges)).toBe(1);
+    expect(binarySearchForIsDigitFn(4980, arrRanges)).toBe(2);
   });
 
   test("Вызываю функцию с некорректными значениями.", () => {
