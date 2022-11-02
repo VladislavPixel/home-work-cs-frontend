@@ -11,6 +11,7 @@ import IterableDynamicArray from "./lecture3/iterable-dynamic-array/modules/dyna
 import HashMapWithIterator from "./lecture3/hash-map-with-keys/modules/hash-map";
 import binarySearch from "./lecture3/binary-search/binary-search";
 import recBinarySearch from "./lecture3/binary-search/rec-binary-search";
+import iter from "./lecture4/iter/iter-symbols";
 
 export {
   LinkedListWithIterator,
@@ -25,5 +26,6 @@ export {
   IterableDynamicArray,
   HashMapWithIterator,
   binarySearch,
-  recBinarySearch
+  recBinarySearch,
+	iter
 };

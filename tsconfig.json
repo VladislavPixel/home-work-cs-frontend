@@ -11,5 +11,5 @@
     "allowJs": true
   },
   "exclude": ["node_modules"],
-  "include": ["index.ts", "lecture1/**/*", "lecture3/**/*"]
+  "include": ["index.ts", "lecture1/**/*", "lecture3/**/*", "lecture4/**/*"]
 }
