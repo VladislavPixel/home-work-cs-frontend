@@ -3,6 +3,7 @@ import type {
   ITreeNode,
   ITraversalIterator
 } from "../types/interfaces";
+
 import TreeNode from "./tree-node";
 import DepthForwardIterator from "./depth-forward-iterator";
 import IteratorToWidth from "./iterator-to-width";

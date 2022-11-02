@@ -1,4 +1,5 @@
 import type { IBinaryTreeSet, ITraversalIterator } from "../types/interfaces";
+
 import BinaryTreeSet from "../modules/binary-tree-set";
 import DepthForwardIterator from "../modules/depth-forward-iterator";
 import IteratorToWidth from "../modules/iterator-to-width";
