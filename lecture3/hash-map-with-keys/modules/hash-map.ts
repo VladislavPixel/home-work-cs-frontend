@@ -1,80 +1,76 @@
-import type {
-  IHashMap,
-  ILinkedList,
-  IIteratorHashMapWithKey
-} from "../types/interfaces";
+import type { IHashMap, ILinkedList, IIteratorHashMapWithKey } from "../types/interfaces";
 import LinkedList from "./linked-list";
 import IteratorHashMapWithKey from "./iterator-hash-map-with-key";
 
 class HashMap<A> implements IHashMap<A> {
-  #capacityInternalArray: number;
+	#capacityInternalArray: number;
 
-  #length: number;
+	#length: number;
 
-  #internalArray: Array<ILinkedList<A>>;
+	#internalArray: Array<ILinkedList<A>>;
 
-  constructor() {
-    this.#capacityInternalArray = 59;
-    this.#length = 0;
-    this.#internalArray = new Array(this.#capacityInternalArray);
-    for (let m = 0; m < this.#capacityInternalArray; m++) {
-      this.#internalArray[m] = new LinkedList();
-    }
-  }
+	constructor() {
+		this.#capacityInternalArray = 59;
+		this.#length = 0;
+		this.#internalArray = new Array(this.#capacityInternalArray);
+		for (let m = 0; m < this.#capacityInternalArray; m++) {
+			this.#internalArray[m] = new LinkedList();
+		}
+	}
 
-  get length(): number {
-    return this.#length;
-  }
+	get length(): number {
+		return this.#length;
+	}
 
-  #hashFn(strKey: string): number {
-    let hashValue = 0;
+	#hashFn(strKey: string): number {
+		let hashValue = 0;
 
-    for (let m = 0; m < strKey.length; m++) {
-      const charCode = strKey.charCodeAt(m);
+		for (let m = 0; m < strKey.length; m++) {
+			const charCode = strKey.charCodeAt(m);
 
-      hashValue = (hashValue * 65535 + charCode) % this.#capacityInternalArray;
-    }
+			hashValue = (hashValue * 65535 + charCode) % this.#capacityInternalArray;
+		}
 
-    return hashValue;
-  }
+		return hashValue;
+	}
 
-  #convertToString(key: unknown): string {
-    return typeof key !== "string" ? JSON.stringify(key) : key;
-  }
+	#convertToString(key: unknown): string {
+		return typeof key !== "string" ? JSON.stringify(key) : key;
+	}
 
-  set(key: unknown, value: A): number {
-    const stringKey = this.#convertToString(key);
+	set(key: unknown, value: A): number {
+		const stringKey = this.#convertToString(key);
 
-    const hashValue = this.#hashFn(stringKey);
+		const hashValue = this.#hashFn(stringKey);
 
-    this.#internalArray[hashValue].addFirst(stringKey, value);
+		this.#internalArray[hashValue].addFirst(stringKey, value);
 
-    this.#length++;
+		this.#length++;
 
-    return this.#length;
-  }
+		return this.#length;
+	}
 
-  get(key: unknown): undefined | A {
-    const stringKey = this.#convertToString(key);
+	get(key: unknown): undefined | A {
+		const stringKey = this.#convertToString(key);
 
-    const hashValue = this.#hashFn(stringKey);
+		const hashValue = this.#hashFn(stringKey);
 
-    for (const nodeInfo of this.#internalArray[hashValue]) {
-      if (nodeInfo.key === stringKey) {
-        return nodeInfo.value;
-      }
-    }
+		for (const nodeInfo of this.#internalArray[hashValue]) {
+			if (nodeInfo.key === stringKey) {
+				return nodeInfo.value;
+			}
+		}
 
-    return undefined;
-  }
+		return undefined;
+	}
 
-  #getIteratorWithKey(): IIteratorHashMapWithKey<A> {
-    return new IteratorHashMapWithKey(this.#internalArray, this.#length);
-  }
+	#getIteratorWithKey(): IIteratorHashMapWithKey<A> {
+		return new IteratorHashMapWithKey(this.#internalArray, this.#length);
+	}
 
-  keys(): IIteratorHashMapWithKey<A> {
-    return this.#getIteratorWithKey();
-  }
+	keys(): IIteratorHashMapWithKey<A> {
+		return this.#getIteratorWithKey();
+	}
 }
 
 export default HashMap;

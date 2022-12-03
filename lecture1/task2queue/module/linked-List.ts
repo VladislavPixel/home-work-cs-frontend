@@ -2,46 +2,46 @@ import type { ILinkedList, INode } from "../types/interfaces";
 import Node from "./node";
 
 class LinkedList<T> implements ILinkedList<T> {
-  first: null | INode<T>;
+	first: null | INode<T>;
 
-  tail: null | INode<T>;
+	tail: null | INode<T>;
 
-  #counterElements: number;
+	#counterElements: number;
 
-  constructor() {
-    this.first = null;
-    this.tail = this.first;
-    this.#counterElements = 0;
-  }
+	constructor() {
+		this.first = null;
+		this.tail = this.first;
+		this.#counterElements = 0;
+	}
 
-  addLast(newValue: T): number {
-    const newNode = new Node(newValue);
+	addLast(newValue: T): number {
+		const newNode = new Node(newValue);
 
-    if (this.#counterElements === 0) {
-      this.first = newNode;
-    } else if (this.tail) {
-      this.tail.next = newNode;
-    }
+		if (this.#counterElements === 0) {
+			this.first = newNode;
+		} else if (this.tail) {
+			this.tail.next = newNode;
+		}
 
-    this.tail = newNode;
-    this.#counterElements++;
+		this.tail = newNode;
+		this.#counterElements++;
 
-    return this.#counterElements;
-  }
+		return this.#counterElements;
+	}
 
-  deleteFirst(): null | INode<T> {
-    if (this.#counterElements === 0) return null;
+	deleteFirst(): null | INode<T> {
+		if (this.#counterElements === 0) return null;
 
-    const deleteElement = this.first;
+		const deleteElement = this.first;
 
-    this.first = deleteElement!.next;
+		this.first = deleteElement!.next;
 
-    if (this.first === null) this.tail = this.first;
+		if (this.first === null) this.tail = this.first;
 
-    this.#counterElements--;
+		this.#counterElements--;
 
-    return deleteElement;
-  }
+		return deleteElement;
+	}
 }
 
 export default LinkedList;

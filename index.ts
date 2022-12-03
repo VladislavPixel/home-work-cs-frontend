@@ -14,18 +14,18 @@ import recBinarySearch from "./lecture3/binary-search/rec-binary-search";
 import iter from "./lecture4/iter/iter-symbols";
 
 export {
-  LinkedListWithIterator,
-  LinkedList,
-  Queue,
-  DecQueue,
-  Stack,
-  Structure,
-  DynamicArray,
-  HashMap,
-  Vector,
-  IterableDynamicArray,
-  HashMapWithIterator,
-  binarySearch,
-  recBinarySearch,
-  iter
+	LinkedListWithIterator,
+	LinkedList,
+	Queue,
+	DecQueue,
+	Stack,
+	Structure,
+	DynamicArray,
+	HashMap,
+	Vector,
+	IterableDynamicArray,
+	HashMapWithIterator,
+	binarySearch,
+	recBinarySearch,
+	iter
 };

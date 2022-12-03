@@ -1,25 +1,25 @@
 import type { INode } from "../types/interfaces";
 
 class Node<T> implements INode<T> {
-  next: null | INode<T>;
+	next: null | INode<T>;
 
-  prev: null | INode<T>;
+	prev: null | INode<T>;
 
-  value: T;
+	value: T;
 
-  constructor(newValue: T) {
-    this.next = null;
-    this.prev = this.next;
-    this.value = newValue;
-  }
+	constructor(newValue: T) {
+		this.next = null;
+		this.prev = this.next;
+		this.value = newValue;
+	}
 
-  displayNode(): string {
-    const message = `element value: ${this.value};`;
+	displayNode(): string {
+		const message = `element value: ${this.value};`;
 
-    console.log(message);
+		console.log(message);
 
-    return message;
-  }
+		return message;
+	}
 }
 
 export default Node;

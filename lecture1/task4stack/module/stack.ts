@@ -1,45 +1,45 @@
 import type { IStack } from "../interface/i-stack";
 
 class Stack<T> implements IStack<T> {
-  #array: T[];
+	#array: T[];
 
-  #top: number;
+	#top: number;
 
-  head: null | T;
+	head: null | T;
 
-  constructor() {
-    this.#array = new Array(10);
-    this.#top = -1;
-    this.head = null;
-  }
+	constructor() {
+		this.#array = new Array(10);
+		this.#top = -1;
+		this.head = null;
+	}
 
-  push(newValue: T): boolean {
-    if (this.#top === this.#array.length - 1) {
-      throw new Error("Stack is Full!!!");
-    }
+	push(newValue: T): boolean {
+		if (this.#top === this.#array.length - 1) {
+			throw new Error("Stack is Full!!!");
+		}
 
-    this.#top++;
+		this.#top++;
 
-    this.#array[this.#top] = newValue;
+		this.#array[this.#top] = newValue;
 
-    this.head = newValue;
+		this.head = newValue;
 
-    return true;
-  }
+		return true;
+	}
 
-  pop(): T {
-    if (this.#top === -1) {
-      throw new Error("Stack is Empty!!!");
-    }
+	pop(): T {
+		if (this.#top === -1) {
+			throw new Error("Stack is Empty!!!");
+		}
 
-    const deleteElement = this.#array[this.#top];
+		const deleteElement = this.#array[this.#top];
 
-    this.#top--;
+		this.#top--;
 
-    this.head = this.#top === -1 ? null : this.#array[this.#top];
+		this.head = this.#top === -1 ? null : this.#array[this.#top];
 
-    return deleteElement;
-  }
+		return deleteElement;
+	}
 }
 
 export default Stack;

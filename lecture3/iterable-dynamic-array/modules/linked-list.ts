@@ -2,104 +2,104 @@ import Node from "./node";
 import type { ILinkedList, INode } from "../types/interfaces";
 
 interface TypeForResultNextMethod<T> {
-  value: undefined | T;
-  currentIndex: number;
+	value: undefined | T;
+	currentIndex: number;
 }
 
 interface TypeForResultGetIteratorMethod<T> {
-  next(): TypeForResultNextMethod<T>;
+	next(): TypeForResultNextMethod<T>;
 }
 
 class LinkedList<T> implements ILinkedList<T> {
-  #capacityArr: number;
+	#capacityArr: number;
 
-  #counterForTailNode: number;
+	#counterForTailNode: number;
 
-  total: number;
+	total: number;
 
-  first: INode<T>;
+	first: INode<T>;
 
-  tail: INode<T>;
+	tail: INode<T>;
 
-  constructor(capacityValueForArr: number) {
-    this.#capacityArr = capacityValueForArr;
-    this.#counterForTailNode = -1;
-    this.total = 0;
-    this.first = new Node(capacityValueForArr);
-    this.tail = this.first;
-  }
+	constructor(capacityValueForArr: number) {
+		this.#capacityArr = capacityValueForArr;
+		this.#counterForTailNode = -1;
+		this.total = 0;
+		this.first = new Node(capacityValueForArr);
+		this.tail = this.first;
+	}
 
-  addLast(newValue: T): number {
-    if (this.#capacityArr === 0) {
-      throw new Error(
-        "method `addLast` is not supported in LinkedList with 0 capacity array"
-      );
-    }
+	addLast(newValue: T): number {
+		if (this.#capacityArr === 0) {
+			throw new Error(
+				"method `addLast` is not supported in LinkedList with 0 capacity array"
+			);
+		}
 
-    if (this.#counterForTailNode === this.#capacityArr - 1) {
-      const newNode = new Node<T>(this.#capacityArr);
+		if (this.#counterForTailNode === this.#capacityArr - 1) {
+			const newNode = new Node<T>(this.#capacityArr);
 
-      this.tail.next = newNode;
+			this.tail.next = newNode;
 
-      this.tail = newNode;
+			this.tail = newNode;
 
-      this.#counterForTailNode = -1;
-    }
+			this.#counterForTailNode = -1;
+		}
 
-    this.#counterForTailNode++;
+		this.#counterForTailNode++;
 
-    this.tail.value[this.#counterForTailNode] = newValue;
+		this.tail.value[this.#counterForTailNode] = newValue;
 
-    this.total++;
+		this.total++;
 
-    return this.total;
-  }
+		return this.total;
+	}
 
-  #getIterator(): TypeForResultGetIteratorMethod<T> {
-    let currentNode = this.first;
+	#getIterator(): TypeForResultGetIteratorMethod<T> {
+		let currentNode = this.first;
 
-    let indexForArr = 0;
+		let indexForArr = 0;
 
-    let currentIndex = 0;
+		let currentIndex = 0;
 
-    const next = (): TypeForResultNextMethod<T> => {
-      let result;
+		const next = (): TypeForResultNextMethod<T> => {
+			let result;
 
-      if (currentIndex < this.total) {
-        result = { value: currentNode.value[indexForArr], currentIndex };
+			if (currentIndex < this.total) {
+				result = { value: currentNode.value[indexForArr], currentIndex };
 
-        currentIndex++;
+				currentIndex++;
 
-        indexForArr++;
+				indexForArr++;
 
-        if (indexForArr === this.#capacityArr) {
-          if (this.first.next) currentNode = this.first.next;
+				if (indexForArr === this.#capacityArr) {
+					if (this.first.next) currentNode = this.first.next;
 
-          indexForArr = 0;
-        }
-      } else {
-        result = { value: undefined, currentIndex };
-      }
+					indexForArr = 0;
+				}
+			} else {
+				result = { value: undefined, currentIndex };
+			}
 
-      return result;
-    };
+			return result;
+		};
 
-    return { next };
-  }
+		return { next };
+	}
 
-  findElementByIndex(indexForElement: number): undefined | T {
-    const iterator = this.#getIterator();
+	findElementByIndex(indexForElement: number): undefined | T {
+		const iterator = this.#getIterator();
 
-    for (let m = 0; m < this.total; m++) {
-      const result = iterator.next();
+		for (let m = 0; m < this.total; m++) {
+			const result = iterator.next();
 
-      if (result.currentIndex === indexForElement) {
-        return result.value;
-      }
-    }
+			if (result.currentIndex === indexForElement) {
+				return result.value;
+			}
+		}
 
-    return undefined;
-  }
+		return undefined;
+	}
 }
 
 export default LinkedList;

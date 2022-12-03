@@ -3,32 +3,32 @@ import Node from "./node";
 import type { ILinkedList, INode, IIterator } from "../types/interfaces";
 
 class LinkedList<A> implements ILinkedList<A> {
-  #length: number;
+	#length: number;
 
-  first: null | INode<A>;
+	first: null | INode<A>;
 
-  constructor() {
-    this.first = null;
-    this.#length = 0;
-  }
+	constructor() {
+		this.first = null;
+		this.#length = 0;
+	}
 
-  [Symbol.iterator](): IIterator<A> {
-    return new Iterator(this);
-  }
+	[Symbol.iterator](): IIterator<A> {
+		return new Iterator(this);
+	}
 
-  addFirst(key: string, value: A): number {
-    const node = new Node(key, value);
+	addFirst(key: string, value: A): number {
+		const node = new Node(key, value);
 
-    if (this.#length !== 0) {
-      node.next = this.first;
-    }
+		if (this.#length !== 0) {
+			node.next = this.first;
+		}
 
-    this.first = node;
+		this.first = node;
 
-    this.#length++;
+		this.#length++;
 
-    return this.#length;
-  }
+		return this.#length;
+	}
 }
 
 export default LinkedList;
