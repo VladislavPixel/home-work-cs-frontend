@@ -1,3 +1,3 @@
-const regExp = /^(?:\w|[_$])+$/gm;
+const regExp = /^[\w_$]*$/;
 
 export { regExp };

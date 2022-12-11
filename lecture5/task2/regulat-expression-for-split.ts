@@ -1,3 +1,3 @@
-const regExpForSplit = /[.,;]|(?:[ ]+)/gm;
+const regExpForSplit = /[.,;]|(?: )+/g;
 
 export { regExpForSplit };

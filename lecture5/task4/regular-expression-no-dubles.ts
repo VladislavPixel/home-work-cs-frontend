@@ -1,3 +1,3 @@
-const regExpNoDubles = /(\w|\w\w|\w\w\w)\1{1,3}/gms;
+const regExpNoDubles = /(\w{1,3}?)\1+/g;
 
 export { regExpNoDubles };

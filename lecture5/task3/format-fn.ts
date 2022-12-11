@@ -4,7 +4,7 @@ export interface IHashTable {
 
 function formatFn(str: string, parameters: IHashTable): string {
 	const result = str.replace(
-		/(?:[$])(?:[{])(\w+)(?:[}])/gm,
+		/\$\{(\w+)\}/g,
 		(str: string, q1: string): string => {
 			if (q1 in parameters) {
 				return `${parameters[q1]}`;
