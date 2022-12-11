@@ -1,82 +1,82 @@
 import type {
-  IDynamicArray,
-  ILinkedList,
-  IIteratorDynamicArray
+	IDynamicArray,
+	ILinkedList,
+	IIteratorDynamicArray
 } from "../types/interfaces";
 import DynamicArray from "../modules/dynamic-array";
 import LinkedList from "../modules/linked-list";
 import Iterator from "../modules/iterator";
 
 describe("Проверяю модуль динамического массива - DynamicArray: ", () => {
-  test("Создаю экземпляр.", () => {
-    const arr: IDynamicArray = new DynamicArray(3);
+	test("Создаю экземпляр.", () => {
+		const arr: IDynamicArray = new DynamicArray(3);
 
-    const list: ILinkedList = new LinkedList(3);
+		const list: ILinkedList = new LinkedList(3);
 
-    expect(arr.length).toBe(0);
-    expect(arr.add).toBeDefined();
-    expect(arr.get).toBeDefined();
-    expect(arr[Symbol.iterator]).toBeDefined();
-    expect(arr.list).toEqual(list);
-  });
+		expect(arr.length).toBe(0);
+		expect(arr.add).toBeDefined();
+		expect(arr.get).toBeDefined();
+		expect(arr[Symbol.iterator]).toBeDefined();
+		expect(arr.list).toEqual(list);
+	});
 
-  test("Добавляю элемент в динамический массив не с нулевым capacity value.", () => {
-    const arr: IDynamicArray = new DynamicArray(3);
+	test("Добавляю элемент в динамический массив не с нулевым capacity value.", () => {
+		const arr: IDynamicArray = new DynamicArray(3);
 
-    expect(arr.add(777)).toBe(1);
-    expect(arr.add(100)).toBe(2);
-    expect(arr.add(123)).toBe(3);
-    expect(arr.add(1)).toBe(4);
-  });
+		expect(arr.add(777)).toBe(1);
+		expect(arr.add(100)).toBe(2);
+		expect(arr.add(123)).toBe(3);
+		expect(arr.add(1)).toBe(4);
+	});
 
-  test("Добавляю элемент в динамический массив с 0 capacity value.", () => {
-    const arr: IDynamicArray = new DynamicArray(0);
+	test("Добавляю элемент в динамический массив с 0 capacity value.", () => {
+		const arr: IDynamicArray = new DynamicArray(0);
 
-    expect(() => arr.add(900)).toThrow(
-      "method `add` is not supported in DynamicArray with 0 capacity value"
-    );
-  });
+		expect(() => arr.add(900)).toThrow(
+			"method `add` is not supported in DynamicArray with 0 capacity value"
+		);
+	});
 
-  test("Получаю элементы по индексу.", () => {
-    const arr: IDynamicArray = new DynamicArray(3);
+	test("Получаю элементы по индексу.", () => {
+		const arr: IDynamicArray = new DynamicArray(3);
 
-    arr.add(500);
-    arr.add(600);
-    arr.add(1);
-    arr.add(7);
+		arr.add(500);
+		arr.add(600);
+		arr.add(1);
+		arr.add(7);
 
-    expect(arr.get(-10)).toBe(undefined);
-    expect(arr.get(900)).toBe(undefined);
-    expect(arr.get(1)).toBe(600);
-    expect(arr.get(3)).toBe(7);
-  });
+		expect(arr.get(-10)).toBe(undefined);
+		expect(arr.get(900)).toBe(undefined);
+		expect(arr.get(1)).toBe(600);
+		expect(arr.get(3)).toBe(7);
+	});
 
-  test("Вызываю метод [Symbol.iterator] для проверки возвращаемого значения.", () => {
-    const arr: IDynamicArray = new DynamicArray(3);
+	test("Вызываю метод [Symbol.iterator] для проверки возвращаемого значения.", () => {
+		const arr: IDynamicArray = new DynamicArray(3);
 
-    const iterator: IIteratorDynamicArray = new Iterator(arr);
+		const iterator: IIteratorDynamicArray = new Iterator(arr);
 
-    expect(arr[Symbol.iterator]()).toEqual(iterator);
-  });
+		expect(arr[Symbol.iterator]()).toEqual(iterator);
+	});
 
-  test("Итерирую в цикле динамический массив.", () => {
-    const arr: IDynamicArray = new DynamicArray(3);
+	test("Итерирую в цикле динамический массив.", () => {
+		const arr: IDynamicArray = new DynamicArray(3);
 
-    const nextMock = jest.spyOn(Iterator.prototype, "next");
+		const nextMock = jest.spyOn(Iterator.prototype, "next");
 
-    for (const value of arr) {
-      console.log(value);
-    }
+		for (const value of arr) {
+			console.log(value);
+		}
 
-    expect(nextMock).toHaveBeenCalledTimes(1);
+		expect(nextMock).toHaveBeenCalledTimes(1);
 
-    arr.add(1);
-    arr.add(50);
+		arr.add(1);
+		arr.add(50);
 
-    for (const value of arr) {
-      console.log(value);
-    }
+		for (const value of arr) {
+			console.log(value);
+		}
 
-    expect(nextMock).toHaveBeenCalledTimes(4);
-  });
+		expect(nextMock).toHaveBeenCalledTimes(4);
+	});
 });

@@ -2,45 +2,45 @@ import type { IQueue, ILinkedList } from "../types/interfaces";
 import LinkedList from "./linked-List";
 
 class Queue<T> implements IQueue<T> {
-  head: null | T;
+	head: null | T;
 
-  #linkedList: ILinkedList<T>;
+	#linkedList: ILinkedList<T>;
 
-  #auxiliary: number;
+	#auxiliary: number;
 
-  constructor() {
-    this.#linkedList = new LinkedList();
-    this.head = null;
-    this.#auxiliary = -1;
-  }
+	constructor() {
+		this.#linkedList = new LinkedList();
+		this.head = null;
+		this.#auxiliary = -1;
+	}
 
-  push(newValue: T): IQueue<T> {
-    if (this.#auxiliary === -1) {
-      this.head = newValue;
-      this.#auxiliary = 0;
-    }
+	push(newValue: T): IQueue<T> {
+		if (this.#auxiliary === -1) {
+			this.head = newValue;
+			this.#auxiliary = 0;
+		}
 
-    this.#linkedList.addLast(newValue);
+		this.#linkedList.addLast(newValue);
 
-    return this;
-  }
+		return this;
+	}
 
-  pop(): T {
-    const deletedElement = this.#linkedList.deleteFirst();
+	pop(): T {
+		const deletedElement = this.#linkedList.deleteFirst();
 
-    if (deletedElement === null) {
-      throw new Error("Operation `pop` is not supported in Empty Queue!");
-    }
+		if (deletedElement === null) {
+			throw new Error("Operation `pop` is not supported in Empty Queue!");
+		}
 
-    if (deletedElement.next) {
-      this.head = deletedElement.next.value;
-    } else {
-      this.head = null;
-      this.#auxiliary = -1;
-    }
+		if (deletedElement.next) {
+			this.head = deletedElement.next.value;
+		} else {
+			this.head = null;
+			this.#auxiliary = -1;
+		}
 
-    return deletedElement.value;
-  }
+		return deletedElement.value;
+	}
 }
 
 export default Queue;

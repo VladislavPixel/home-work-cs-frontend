@@ -1,17 +1,17 @@
 import type { INode } from "../types/interfaces";
 
 class Node<A> implements INode<A> {
-  key: string;
+	key: string;
 
-  value: A;
+	value: A;
 
-  next: null | INode<A>;
+	next: null | INode<A>;
 
-  constructor(key: string, value: A) {
-    this.key = key;
-    this.value = value;
-    this.next = null;
-  }
+	constructor(key: string, value: A) {
+		this.key = key;
+		this.value = value;
+		this.next = null;
+	}
 }
 
 export default Node;

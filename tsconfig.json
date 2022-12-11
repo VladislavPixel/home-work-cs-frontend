@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "target": "ES2021",
-    "strict": true,
-    "experimentalDecorators": true,
-    "noImplicitOverride": true,
-    "importsNotUsedAsValues": "error",
-    "outDir": "./build-dz",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowJs": true
-  },
-  "exclude": ["node_modules"],
-  "include": ["index.ts", "lecture1/**/*", "lecture3/**/*", "lecture4/**/*"]
+	"compilerOptions": {
+		"target": "ES2021",
+		"strict": true,
+		"experimentalDecorators": true,
+		"noImplicitOverride": true,
+		"importsNotUsedAsValues": "error",
+		"outDir": "./build-dz",
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowJs": true
+	},
+	"exclude": ["node_modules"],
+	"include": ["index.ts", "lecture1/**/*", "lecture3/**/*", "lecture4/**/*", "lecture5/**/*"]
 }
