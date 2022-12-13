@@ -21,7 +21,7 @@ export interface IIteratorForRange<T> {
 	next(): { value: T | undefined; done: boolean };
 }
 
-export interface IIterable {
-	[Symbol.iterator](): IIterator<unknown>;
+export interface IIterable<T = any> {
+	[Symbol.iterator](): IIterator<T>;
 	[key: PropertyKey]: unknown;
 }
