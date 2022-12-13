@@ -20,3 +20,8 @@ export interface IIteratorForRange<T> {
 	[Symbol.iterator](): IIteratorForRange<T>;
 	next(): { value: T | undefined; done: boolean };
 }
+
+export interface IIterable {
+	[Symbol.iterator](): IIterator<unknown>;
+	[key: PropertyKey]: unknown;
+}
