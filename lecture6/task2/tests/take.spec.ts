@@ -1,11 +1,10 @@
 import { random } from "../../task1/random";
 import { take } from "../take";
-import type { IIterator } from "../../types";
 
 describe("Проверяю функцию take:", () => {
 	test("Наполняю массив числами, используя функцию take.", () => {
-		const iteratorForRandom1: IIterator = random(0, 100);
-		const iteratorForRandom2: IIterator = random(0, 100);
+		const iteratorForRandom1: IterableIterator<number> = random(0, 100);
+		const iteratorForRandom2: IterableIterator<number> = random(0, 100);
 
 		const resultArray1 = [...take(iteratorForRandom1, 15)];
 		const resultArray2 = [...take(iteratorForRandom2, 1000)];

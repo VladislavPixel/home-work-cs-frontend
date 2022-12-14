@@ -1,44 +1,42 @@
-import type { IIterable, IIterator } from "../types";
+import type { IterableElementsType } from "../types";
 
-function seq(...arrayOfIterableElements: unknown[]): IIterator<undefined | unknown> {
+function seq<T extends Iterable<any>>(...arrayOfIterableElements: T[]): IterableIterator<undefined | IterableElementsType<T>> {
 	let index = 0;
 
-	const targetIterable = arrayOfIterableElements[index];
+	let targetIterable = arrayOfIterableElements[index];
 
 	if (targetIterable === undefined || targetIterable === null) {
 		throw new Error("Pass an iterable structure or a set of such iterable structures to the function.");
 	}
 
-	let correctTargetIterable = targetIterable as IIterable;
-
-	if (correctTargetIterable[Symbol.iterator] === undefined) {
+	if (targetIterable[Symbol.iterator] === undefined) {
 		throw new Error("You have passed a structure that cannot be iterated.");
 	}
 
-	let targetIterator = correctTargetIterable[Symbol.iterator]();
+	let targetIterator = targetIterable[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IIterator<undefined | unknown> {
+		[Symbol.iterator](): IterableIterator<undefined | IterableElementsType<T>> {
 			return this;
 		},
-		next(): { value: undefined | unknown; done: boolean } {
+		next(): IteratorResult<IterableElementsType<T> | undefined> {
 			const { value, done } = targetIterator.next();
 
 			if (done) {
 				index++;
 
 				for (let m = index; m < arrayOfIterableElements.length; m++) {
-					correctTargetIterable = arrayOfIterableElements[m] as IIterable;
+					targetIterable = arrayOfIterableElements[m];
 
-					if (correctTargetIterable === undefined) {
+					if (targetIterable === undefined) {
 						return { value: undefined, done: true };
 					}
 
-					if (correctTargetIterable === null || correctTargetIterable[Symbol.iterator] === undefined) {
+					if (targetIterable === null || targetIterable[Symbol.iterator] === undefined) {
 						throw new Error("You have passed a structure that cannot be iterated.");
 					}
 
-					targetIterator = correctTargetIterable[Symbol.iterator]();
+					targetIterator = targetIterable[Symbol.iterator]();
 
 					const { value, done } = targetIterator.next();
 

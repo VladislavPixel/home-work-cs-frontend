@@ -1,4 +1,8 @@
-import type { IMyRange, IIteratorForRange } from "../types";
+import type {
+	IMyRange,
+	IIteratorForRange
+} from "../types";
+
 import { ConsistentIteratorForRange } from "./consistent-iterator-for-range";
 import { BackIteratorForRange } from "./back-iterator-for-range";
 
@@ -21,7 +25,7 @@ class MyRange<T> implements IMyRange<T> {
 		};
 	}
 
-	isValidData(status: boolean, type: string): boolean {
+	isValidData(status: boolean, type: string): void {
 		if (!status) {
 			throw new Error("The type of borderLeft and borderRight are not the same.");
 		}
@@ -33,8 +37,6 @@ class MyRange<T> implements IMyRange<T> {
 		if (this.borderLeft > this.borderRight) {
 			throw new Error("BorderLeft > BorderRight.");
 		}
-
-		return true;
 	}
 
 	[Symbol.iterator](): IIteratorForRange<T> {

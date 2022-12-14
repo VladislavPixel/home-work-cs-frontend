@@ -4,6 +4,8 @@ describe("Проверяю класс Range:", () => {
 	test("Проверяю экземпляр класса MyRange на наличие всех методов.", () => {
 		const rangeSymbol = new MyRange("a", "f");
 
+		expect(rangeSymbol.borderLeft).toBeDefined();
+		expect(rangeSymbol.borderRight).toBeDefined();
 		expect(rangeSymbol.getConfigSameTypes).toBeDefined();
 		expect(rangeSymbol.isValidData).toBeDefined();
 		expect(rangeSymbol.reverse).toBeDefined();
@@ -59,7 +61,7 @@ describe("Проверяю класс Range:", () => {
 
 		const range2 = new MyRange<any>(200, "c");
 
-		const range3 = new MyRange<any>({}, []);
+		const range3 = new MyRange([], {});
 
 		expect(() => Array.from(rangeNumber1)).toThrow("BorderLeft > BorderRight.");
 		expect(() => Array.from(range2)).toThrow("The type of borderLeft and borderRight are not the same.");

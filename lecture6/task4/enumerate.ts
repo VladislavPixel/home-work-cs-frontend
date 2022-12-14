@@ -1,16 +1,26 @@
-import type { IIterator } from "../types";
+import type { IterableElementsType } from "../types";
 
-function enumerate(iterable: IIterator): IIterator<[number, number | undefined]> {
+function enumerate<T extends Iterable<any>>(iterable: T): IterableIterator<[number, IterableElementsType<T>]> {
 	let counter = 0;
 
+	if (iterable === null || iterable === undefined) {
+		throw new Error("The first argument of the take function must be iterable.");
+	}
+
+	if (iterable[Symbol.iterator] === undefined) {
+		throw new Error("An iterable entity must contain a method [Symbol.iterator] that returns an iterator.");
+	}
+
+	const iteratorIterable = iterable[Symbol.iterator]();
+
 	return {
-		[Symbol.iterator](): IIterator<[number, number | undefined]> {
+		[Symbol.iterator](): IterableIterator<[number, IterableElementsType<T>]> {
 			return this;
 		},
-		next(): { value: [number, number | undefined]; done: boolean } {
+		next(): IteratorResult<[number, IterableElementsType<T>]> {
 			const currentCounter = counter;
 
-			const currentValueForIterable = iterable.next().value;
+			const currentValueForIterable = iteratorIterable.next().value;
 
 			counter++;
 

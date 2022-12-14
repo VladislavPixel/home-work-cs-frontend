@@ -1,16 +1,15 @@
-import type { IIterator } from "../../types";
 import { random } from "../random";
 
 describe("Проверяю функцию random:", () => {
 	test("Проверяем возвращаемое значение у функции random", () => {
-		const randomInt1: IIterator = random(0, 100);
+		const randomInt1: IterableIterator<number> = random(0, 100);
 
 		expect(randomInt1.next).toBeDefined();
 		expect(randomInt1[Symbol.iterator]).toBeDefined();
 	});
 
 	test("Вызываю у возвращаемого значения из функции random метод next().", () => {
-		const randomInt1: IIterator = random(0, 100);
+		const randomInt1: IterableIterator<number> = random(0, 100);
 
 		const result1 = randomInt1.next();
 		const result2 = randomInt1.next();

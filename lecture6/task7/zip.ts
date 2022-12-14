@@ -1,11 +1,11 @@
-import type { IIterator } from "../types";
+import type { IterableElementsType } from "../types";
 
-function zip(...arrayIterables: unknown[]): IIterator<undefined | unknown[]> {
+function zip<T extends Iterable<any>>(...arrayIterables: T[]): IterableIterator<undefined | Array<IterableElementsType<T>>> {
 	const externalIterator = arrayIterables[Symbol.iterator]();
 
-	const arrayForIterators: Array<IIterator<undefined | unknown>> = [];
+	const arrayForIterators: Array<IterableIterator<undefined | IterableElementsType<T>>> = [];
 
-	let tuple: unknown[] = [];
+	let tuple: Array<IterableElementsType<T>> = [];
 
 	let index = 0;
 
@@ -16,10 +16,10 @@ function zip(...arrayIterables: unknown[]): IIterator<undefined | unknown[]> {
 	}
 
 	return {
-		[Symbol.iterator](): IIterator<undefined | unknown[]> {
+		[Symbol.iterator](): IterableIterator<undefined | Array<IterableElementsType<T>>> {
 			return this;
 		},
-		next(): { value: undefined | unknown[]; done: boolean } {
+		next(): IteratorResult<undefined | Array<IterableElementsType<T>>> {
 			for (let m = 0; m < arrayIterables.length; m++) {
 				if (arrayForIterators[index] === undefined) {
 					const { value } = externalIterator.next();

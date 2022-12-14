@@ -1,7 +1,7 @@
-import type { IIterator, IIterable } from "../types";
+import type { IterableElementsType } from "../types";
 
-function mapSeq(iterable: any, iterableWithFNs: IIterable<(el: T) => T>): IIterator<undefined | T> {
-	const isIterable = (data: IIterable): boolean => {
+function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<(el: IterableElementsType<T>) => IterableElementsType<T>>): IterableIterator<undefined | IterableElementsType<T>> {
+	const isIterable = (data: T | Iterable<(el: IterableElementsType<T>) => IterableElementsType<T>>): boolean => {
 		if (data === null || data === undefined) {
 			return false;
 		}
@@ -11,7 +11,7 @@ function mapSeq(iterable: any, iterableWithFNs: IIterable<(el: T) => T>): IItera
 		}
 
 		return true;
-	}
+	};
 
 	if (!isIterable(iterable) || !isIterable(iterableWithFNs)) {
 		throw new Error("Both arguments must be iterable structures. The second argument is an iterable structure with functions.");
@@ -22,17 +22,17 @@ function mapSeq(iterable: any, iterableWithFNs: IIterable<(el: T) => T>): IItera
 	let iteratorForIterableWithFNs = iterableWithFNs[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IIterator<undefined | T> {
+		[Symbol.iterator](): IterableIterator<undefined | IterableElementsType<T>> {
 			return this;
 		},
-		next(): { value: undefined | T; done: boolean } {
+		next(): IteratorResult<undefined | IterableElementsType<T>> {
 			let { value, done } = iteratorForIterable.next();
 
 			if (done) {
 				return { value, done };
 			}
 
-			while(true) {
+			while (true) {
 				const { value: valueIter, done: doneStatus } = iteratorForIterableWithFNs.next();
 
 				if (doneStatus) {
@@ -50,7 +50,7 @@ function mapSeq(iterable: any, iterableWithFNs: IIterable<(el: T) => T>): IItera
 
 			return { value, done: false };
 		}
-	}
-}
+	};
+};
 
 export { mapSeq };

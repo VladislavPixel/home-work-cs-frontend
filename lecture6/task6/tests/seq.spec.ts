@@ -2,7 +2,7 @@ import { seq } from "../seq";
 
 describe("Проверяю функцию seq:", () => {
 	test("Проверяю возвращаемое значение из функции seq.", () => {
-		expect(seq("marker", [1, 2, 3], new Set(["name", "vector"])).next).toBeDefined();
+		expect(seq([1, 2, 3], "marker", new Set(["name", "vector", 12])).next).toBeDefined();
 		expect(seq("marker", [1, 2, 3], new Set(["name", "vector"]))[Symbol.iterator]).toBeDefined();
 	});
 

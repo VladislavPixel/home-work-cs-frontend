@@ -1,15 +1,12 @@
-export interface IIterator<T = undefined | number> {
-	[Symbol.iterator](): IIterator<T>;
-	next(): { value: T; done: boolean };
-}
+export type TypeFnPredicate<T extends Iterable<any>> = (el: IterableElementsType<T>) => boolean;
 
-export type TypeFnPredicate = (el: unknown) => boolean;
+export type IterableElementsType<T extends Iterable<any>> = T extends Iterable<infer H> ? H : unknown;
 
 export interface IMyRange<T = unknown> {
 	borderLeft: T;
 	borderRight: T;
 	getConfigSameTypes(): { status: boolean; type: string };
-	isValidData(status: boolean, type: string): boolean;
+	isValidData(status: boolean, type: string): void;
 	[Symbol.iterator](): IIteratorForRange<T>;
 	reverse(): IIteratorForRange<T>;
 }
@@ -19,9 +16,4 @@ export interface IIteratorForRange<T> {
 	borderRight: T;
 	[Symbol.iterator](): IIteratorForRange<T>;
 	next(): { value: T | undefined; done: boolean };
-}
-
-export interface IIterable<T = any> {
-	[Symbol.iterator](): IIterator<T>;
-	[key: PropertyKey]: unknown;
 }

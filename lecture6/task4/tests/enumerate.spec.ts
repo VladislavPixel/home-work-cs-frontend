@@ -1,13 +1,13 @@
 import { enumerate } from "../enumerate";
 import { random } from "../../task1/random";
-import type { IIterator } from "../../types";
 import { take } from "../../task2/take";
+import type { IterableElementsType } from "../../types";
 
 describe("Проверяю функцию enumerate:", () => {
 	test("Проверяю возвращаемое значение из функции enumerate.", () => {
-		const randomIterator: IIterator = random(0, 100);
+		const randomIterator: IterableIterator<number> = random(0, 100);
 
-		const enumerateIterator: IIterator<[number, number | undefined]> =
+		const enumerateIterator: IterableIterator<[number, IterableElementsType<typeof randomIterator>]> =
 			enumerate(randomIterator);
 
 		expect(enumerateIterator.next).toBeDefined();
@@ -15,18 +15,20 @@ describe("Проверяю функцию enumerate:", () => {
 	});
 
 	test("Наполняю массив значениями вызова enumerate.", () => {
-		const randomIterator: IIterator = random(0, 100);
+		const randomIterator: IterableIterator<number> = random(0, 100);
 
-		const enumerateIterator: IIterator<[number, number | undefined]> =
+		const enumerateIterator: IterableIterator<[number, IterableElementsType<typeof randomIterator>]> =
 			enumerate(randomIterator);
 
 		const arrayResult = [...take(enumerateIterator, 3)];
 
-		expect(arrayResult[0][0]).toBe(0);
-		expect(arrayResult[1][0]).toBe(1);
-		expect(arrayResult[2][0]).toBe(2);
-		expect(typeof arrayResult[0][1] === "number").toBe(true);
-		expect(typeof arrayResult[1][1] === "number").toBe(true);
-		expect(typeof arrayResult[2][1] === "number").toBe(true);
+		for (let m = 0; m < arrayResult.length; m++) {
+			const target = arrayResult[m];
+
+			if (target !== undefined) {
+				expect(target[0]).toBe(m);
+				expect(typeof target[1] === "number").toBe(true);
+			}
+		}
 	});
 });
