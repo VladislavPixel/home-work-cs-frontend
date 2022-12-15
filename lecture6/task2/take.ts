@@ -1,6 +1,9 @@
 import type { TypeForElementsIterable } from "../types";
 
-function take<T extends Iterable<any>>(iterable: T, counter: number): IterableIterator<TypeForElementsIterable<T> | undefined> {
+function take<T extends Iterable<any>>(
+	iterable: T,
+	counter: number
+): IterableIterator<TypeForElementsIterable<T> | undefined> {
 	let currentStateCounter: number = counter;
 
 	if (iterable === null || iterable === undefined) {
@@ -8,7 +11,9 @@ function take<T extends Iterable<any>>(iterable: T, counter: number): IterableIt
 	}
 
 	if (iterable[Symbol.iterator] === undefined) {
-		throw new Error("An iterable entity must contain a method [Symbol.iterator] that returns an iterator.");
+		throw new Error(
+			"An iterable entity must contain a method [Symbol.iterator] that returns an iterator."
+		);
 	}
 
 	const iteratorIterable = iterable[Symbol.iterator]();

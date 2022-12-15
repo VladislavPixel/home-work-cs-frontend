@@ -1,12 +1,16 @@
 import type { TypeForElementsArrayIterable } from "../types";
 
-function seq<T extends Array<Iterable<any>>>(...arrayOfIterableElements: T): IterableIterator<TypeForElementsArrayIterable<T> | undefined> {
+function seq<T extends Array<Iterable<any>>>(
+	...arrayOfIterableElements: T
+): IterableIterator<TypeForElementsArrayIterable<T> | undefined> {
 	let index = 0;
 
 	let targetIterable = arrayOfIterableElements[index];
 
 	if (targetIterable === undefined || targetIterable === null) {
-		throw new Error("Pass an iterable structure or a set of such iterable structures to the function.");
+		throw new Error(
+			"Pass an iterable structure or a set of such iterable structures to the function."
+		);
 	}
 
 	if (targetIterable[Symbol.iterator] === undefined) {
@@ -53,6 +57,6 @@ function seq<T extends Array<Iterable<any>>>(...arrayOfIterableElements: T): Ite
 			return { value, done: false };
 		}
 	};
-};
+}
 
 export { seq };

@@ -1,8 +1,13 @@
-export type TypeFnPredicate<T extends Iterable<any>> = (el: TypeForElementsIterable<T>) => boolean;
+export type TypeFnPredicate<T extends Iterable<any>> = (
+	el: TypeForElementsIterable<T>
+) => boolean;
 
-export type TypeForElementsIterable<T extends Iterable<any>> = T extends Iterable<infer H> ? H : unknown;
+export type TypeForElementsIterable<T extends Iterable<any>> = T extends Iterable<infer H>
+	? H
+	: unknown;
 
-export type TypeForElementsArrayIterable<T extends Array<Iterable<any>>> = T extends Array<Iterable<infer H>> ? H : unknown;
+export type TypeForElementsArrayIterable<T extends Array<Iterable<any>>> =
+	T extends Array<Iterable<infer H>> ? H : unknown;
 
 export interface IMyRange<T = unknown> {
 	borderLeft: T;

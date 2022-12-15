@@ -1,7 +1,4 @@
-import type {
-	IMyRange,
-	IIteratorForRange
-} from "../types";
+import type { IMyRange, IIteratorForRange } from "../types";
 
 import { ConsistentIteratorForRange } from "./consistent-iterator-for-range";
 import { BackIteratorForRange } from "./back-iterator-for-range";

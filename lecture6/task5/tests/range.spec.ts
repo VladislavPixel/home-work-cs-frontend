@@ -64,7 +64,11 @@ describe("Проверяю класс Range:", () => {
 		const range3 = new MyRange([], {});
 
 		expect(() => Array.from(rangeNumber1)).toThrow("BorderLeft > BorderRight.");
-		expect(() => Array.from(range2)).toThrow("The type of borderLeft and borderRight are not the same.");
-		expect(() => Array.from(range3)).toThrow("Argument types are not numbers or strings.");
+		expect(() => Array.from(range2)).toThrow(
+			"The type of borderLeft and borderRight are not the same."
+		);
+		expect(() => Array.from(range3)).toThrow(
+			"Argument types are not numbers or strings."
+		);
 	});
 });

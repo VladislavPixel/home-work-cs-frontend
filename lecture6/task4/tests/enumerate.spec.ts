@@ -7,8 +7,11 @@ describe("Проверяю функцию enumerate:", () => {
 	test("Проверяю возвращаемое значение из функции enumerate.", () => {
 		const randomIterator: IterableIterator<number> = random(0, 100);
 
-		const enumerateIterator: IterableIterator<[number, TypeForElementsIterable<typeof randomIterator>]> =
-			enumerate(randomIterator);
+		/* eslint-disable */
+		const enumerateIterator: IterableIterator<
+			[number, TypeForElementsIterable<typeof randomIterator>]
+		> = enumerate(randomIterator);
+		/* eslint-enable */
 
 		expect(enumerateIterator.next).toBeDefined();
 		expect(enumerateIterator[Symbol.iterator]).toBeDefined();
@@ -17,8 +20,11 @@ describe("Проверяю функцию enumerate:", () => {
 	test("Наполняю массив значениями вызова enumerate.", () => {
 		const randomIterator: IterableIterator<number> = random(0, 100);
 
-		const enumerateIterator: IterableIterator<[number, TypeForElementsIterable<typeof randomIterator>]> =
-			enumerate(randomIterator);
+		/* eslint-disable */
+		const enumerateIterator: IterableIterator<
+			[number, TypeForElementsIterable<typeof randomIterator>]
+		> = enumerate(randomIterator);
+		/* eslint-enable */
 
 		const arrayResult = [...take(enumerateIterator, 3)];
 

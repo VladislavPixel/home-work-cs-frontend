@@ -1,7 +1,16 @@
 import type { TypeForElementsIterable } from "../types";
 
-function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<(el: TypeForElementsIterable<T>) => TypeForElementsIterable<T>>): IterableIterator<undefined | TypeForElementsIterable<T>> {
-	const isIterable = (data: T | Iterable<(el: TypeForElementsIterable<T>) => TypeForElementsIterable<T>>): boolean => {
+function mapSeq<T extends Iterable<any>>(
+	iterable: T,
+	/* eslint-disable */
+	iterableWithFNs: Iterable<
+		(el: TypeForElementsIterable<T>) => TypeForElementsIterable<T>
+	>
+	/* eslint-enable */
+): IterableIterator<undefined | TypeForElementsIterable<T>> {
+	const isIterable = (
+		data: T | Iterable<(el: TypeForElementsIterable<T>) => TypeForElementsIterable<T>>
+	): boolean => {
 		if (data === null || data === undefined) {
 			return false;
 		}
@@ -14,7 +23,9 @@ function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<
 	};
 
 	if (!isIterable(iterable) || !isIterable(iterableWithFNs)) {
-		throw new Error("Both arguments must be iterable structures. The second argument is an iterable structure with functions.");
+		throw new Error(
+			"Both arguments must be iterable structures. The second argument is an iterable structure with functions."
+		);
 	}
 
 	const iteratorForIterable = iterable[Symbol.iterator]();
@@ -40,7 +51,9 @@ function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<
 				}
 
 				if (typeof valueIter !== "function") {
-					throw new Error("The second argument must be an iterable entity that contains functions.");
+					throw new Error(
+						"The second argument must be an iterable entity that contains functions."
+					);
 				}
 
 				value = valueIter(value);
@@ -51,6 +64,6 @@ function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<
 			return { value, done: false };
 		}
 	};
-};
+}
 
 export { mapSeq };

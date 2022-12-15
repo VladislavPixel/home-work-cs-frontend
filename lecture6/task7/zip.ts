@@ -1,9 +1,15 @@
 import type { TypeForElementsArrayIterable } from "../types";
 
-function zip<T extends Array<Iterable<any>>>(...arrayIterables: T): IterableIterator<undefined | Array<TypeForElementsArrayIterable<T>>> {
+function zip<T extends Array<Iterable<any>>>(
+	...arrayIterables: T
+): IterableIterator<undefined | Array<TypeForElementsArrayIterable<T>>> {
 	const externalIterator = arrayIterables[Symbol.iterator]();
 
-	const arrayForIterators: Array<IterableIterator<undefined | TypeForElementsArrayIterable<T>>> = [];
+	/* eslint-disable */
+	const arrayForIterators: Array<
+		IterableIterator<undefined | TypeForElementsArrayIterable<T>>
+	> = [];
+	/* eslint-enable */
 
 	let tuple: Array<TypeForElementsArrayIterable<T>> = [];
 
@@ -16,16 +22,22 @@ function zip<T extends Array<Iterable<any>>>(...arrayIterables: T): IterableIter
 	}
 
 	return {
-		[Symbol.iterator](): IterableIterator<undefined | Array<TypeForElementsArrayIterable<T>>> {
+		/* eslint-disable */
+		[Symbol.iterator](): IterableIterator<
+			undefined | Array<TypeForElementsArrayIterable<T>>
+		> {
 			return this;
 		},
+		/* eslint-enable */
 		next(): { value: undefined | Array<TypeForElementsArrayIterable<T>>; done: boolean } {
 			for (let m = 0; m < arrayIterables.length; m++) {
 				if (arrayForIterators[index] === undefined) {
 					const { value } = externalIterator.next();
 
 					if (value === null || value === undefined) {
-						throw new Error("Pass an iterable structure or a set of such iterable structures to the function.");
+						throw new Error(
+							"Pass an iterable structure or a set of such iterable structures to the function."
+						);
 					}
 
 					if (value[Symbol.iterator] === undefined) {
@@ -53,6 +65,6 @@ function zip<T extends Array<Iterable<any>>>(...arrayIterables: T): IterableIter
 			return { value: saveTuple, done: false };
 		}
 	};
-};
+}
 
 export { zip };
