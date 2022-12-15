@@ -1,6 +1,6 @@
-import type { IterableElementsType } from "../types";
+import type { TypeForElementsArrayIterable } from "../types";
 
-function seq<T extends Iterable<any>>(...arrayOfIterableElements: T[]): IterableIterator<undefined | IterableElementsType<T>> {
+function seq<T extends Array<Iterable<any>>>(...arrayOfIterableElements: T): IterableIterator<TypeForElementsArrayIterable<T> | undefined> {
 	let index = 0;
 
 	let targetIterable = arrayOfIterableElements[index];
@@ -16,10 +16,10 @@ function seq<T extends Iterable<any>>(...arrayOfIterableElements: T[]): Iterable
 	let targetIterator = targetIterable[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IterableIterator<undefined | IterableElementsType<T>> {
+		[Symbol.iterator](): IterableIterator<TypeForElementsArrayIterable<T> | undefined> {
 			return this;
 		},
-		next(): IteratorResult<IterableElementsType<T> | undefined> {
+		next(): { done: boolean; value: TypeForElementsArrayIterable<T> | undefined } {
 			const { value, done } = targetIterator.next();
 
 			if (done) {
@@ -41,7 +41,7 @@ function seq<T extends Iterable<any>>(...arrayOfIterableElements: T[]): Iterable
 					const { value, done } = targetIterator.next();
 
 					if (!done) {
-						return { value, done };
+						return { value, done: false };
 					}
 
 					index++;
@@ -50,7 +50,7 @@ function seq<T extends Iterable<any>>(...arrayOfIterableElements: T[]): Iterable
 				return { value: undefined, done: true };
 			}
 
-			return { value, done };
+			return { value, done: false };
 		}
 	};
 };

@@ -1,6 +1,6 @@
-import type { IterableElementsType } from "../types";
+import type { TypeForElementsIterable } from "../types";
 
-function take<T extends Iterable<any>>(iterable: T, counter: number): IterableIterator<IterableElementsType<T> | undefined> {
+function take<T extends Iterable<any>>(iterable: T, counter: number): IterableIterator<TypeForElementsIterable<T> | undefined> {
 	let currentStateCounter: number = counter;
 
 	if (iterable === null || iterable === undefined) {
@@ -14,10 +14,10 @@ function take<T extends Iterable<any>>(iterable: T, counter: number): IterableIt
 	const iteratorIterable = iterable[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IterableIterator<IterableElementsType<T> | undefined> {
+		[Symbol.iterator](): IterableIterator<TypeForElementsIterable<T> | undefined> {
 			return this;
 		},
-		next(): IteratorResult<undefined | IterableElementsType<T>> {
+		next(): { value: undefined | TypeForElementsIterable<T>; done: boolean } {
 			currentStateCounter--;
 
 			if (currentStateCounter < 0) {

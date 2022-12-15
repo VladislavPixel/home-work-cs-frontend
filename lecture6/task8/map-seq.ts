@@ -1,7 +1,7 @@
-import type { IterableElementsType } from "../types";
+import type { TypeForElementsIterable } from "../types";
 
-function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<(el: IterableElementsType<T>) => IterableElementsType<T>>): IterableIterator<undefined | IterableElementsType<T>> {
-	const isIterable = (data: T | Iterable<(el: IterableElementsType<T>) => IterableElementsType<T>>): boolean => {
+function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<(el: TypeForElementsIterable<T>) => TypeForElementsIterable<T>>): IterableIterator<undefined | TypeForElementsIterable<T>> {
+	const isIterable = (data: T | Iterable<(el: TypeForElementsIterable<T>) => TypeForElementsIterable<T>>): boolean => {
 		if (data === null || data === undefined) {
 			return false;
 		}
@@ -22,10 +22,10 @@ function mapSeq<T extends Iterable<any>>(iterable: T, iterableWithFNs: Iterable<
 	let iteratorForIterableWithFNs = iterableWithFNs[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IterableIterator<undefined | IterableElementsType<T>> {
+		[Symbol.iterator](): IterableIterator<undefined | TypeForElementsIterable<T>> {
 			return this;
 		},
-		next(): IteratorResult<undefined | IterableElementsType<T>> {
+		next(): IteratorResult<undefined | TypeForElementsIterable<T>> {
 			let { value, done } = iteratorForIterable.next();
 
 			if (done) {

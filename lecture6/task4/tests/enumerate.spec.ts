@@ -1,13 +1,13 @@
 import { enumerate } from "../enumerate";
 import { random } from "../../task1/random";
 import { take } from "../../task2/take";
-import type { IterableElementsType } from "../../types";
+import type { TypeForElementsIterable } from "../../types";
 
 describe("Проверяю функцию enumerate:", () => {
 	test("Проверяю возвращаемое значение из функции enumerate.", () => {
 		const randomIterator: IterableIterator<number> = random(0, 100);
 
-		const enumerateIterator: IterableIterator<[number, IterableElementsType<typeof randomIterator>]> =
+		const enumerateIterator: IterableIterator<[number, TypeForElementsIterable<typeof randomIterator>]> =
 			enumerate(randomIterator);
 
 		expect(enumerateIterator.next).toBeDefined();
@@ -17,7 +17,7 @@ describe("Проверяю функцию enumerate:", () => {
 	test("Наполняю массив значениями вызова enumerate.", () => {
 		const randomIterator: IterableIterator<number> = random(0, 100);
 
-		const enumerateIterator: IterableIterator<[number, IterableElementsType<typeof randomIterator>]> =
+		const enumerateIterator: IterableIterator<[number, TypeForElementsIterable<typeof randomIterator>]> =
 			enumerate(randomIterator);
 
 		const arrayResult = [...take(enumerateIterator, 3)];

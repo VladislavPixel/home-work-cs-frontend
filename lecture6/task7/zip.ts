@@ -1,11 +1,11 @@
-import type { IterableElementsType } from "../types";
+import type { TypeForElementsArrayIterable } from "../types";
 
-function zip<T extends Iterable<any>>(...arrayIterables: T[]): IterableIterator<undefined | Array<IterableElementsType<T>>> {
+function zip<T extends Array<Iterable<any>>>(...arrayIterables: T): IterableIterator<undefined | Array<TypeForElementsArrayIterable<T>>> {
 	const externalIterator = arrayIterables[Symbol.iterator]();
 
-	const arrayForIterators: Array<IterableIterator<undefined | IterableElementsType<T>>> = [];
+	const arrayForIterators: Array<IterableIterator<undefined | TypeForElementsArrayIterable<T>>> = [];
 
-	let tuple: Array<IterableElementsType<T>> = [];
+	let tuple: Array<TypeForElementsArrayIterable<T>> = [];
 
 	let index = 0;
 
@@ -16,10 +16,10 @@ function zip<T extends Iterable<any>>(...arrayIterables: T[]): IterableIterator<
 	}
 
 	return {
-		[Symbol.iterator](): IterableIterator<undefined | Array<IterableElementsType<T>>> {
+		[Symbol.iterator](): IterableIterator<undefined | Array<TypeForElementsArrayIterable<T>>> {
 			return this;
 		},
-		next(): IteratorResult<undefined | Array<IterableElementsType<T>>> {
+		next(): { value: undefined | Array<TypeForElementsArrayIterable<T>>; done: boolean } {
 			for (let m = 0; m < arrayIterables.length; m++) {
 				if (arrayForIterators[index] === undefined) {
 					const { value } = externalIterator.next();

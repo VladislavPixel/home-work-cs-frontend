@@ -1,6 +1,9 @@
-import type { IterableElementsType, TypeFnPredicate } from "../types";
+import type {
+	TypeForElementsIterable,
+	TypeFnPredicate
+} from "../types";
 
-function filter<T extends Iterable<any>>(iterable: T, callback: TypeFnPredicate<T>): IterableIterator<IterableElementsType<T>> {
+function filter<T extends Iterable<any>>(iterable: T, callback: TypeFnPredicate<T>): IterableIterator<TypeForElementsIterable<T>> {
 	if (iterable === null || iterable === undefined) {
 		throw new Error("The first argument of the take function must be iterable.");
 	}
@@ -12,10 +15,10 @@ function filter<T extends Iterable<any>>(iterable: T, callback: TypeFnPredicate<
 	const iteratorIterable = iterable[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IterableIterator<IterableElementsType<T>> {
+		[Symbol.iterator](): IterableIterator<TypeForElementsIterable<T>> {
 			return this;
 		},
-		next(): IteratorResult<IterableElementsType<T>> {
+		next(): { value: TypeForElementsIterable<T>; done: false } {
 			let currentValueForIterable = iteratorIterable.next().value;
 
 			while (!callback(currentValueForIterable)) {
