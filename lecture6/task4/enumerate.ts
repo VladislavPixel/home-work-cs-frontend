@@ -2,7 +2,7 @@ import type { TypeForElementsIterable } from "../types";
 
 function enumerate<T extends Iterable<any>>(
 	iterable: T
-): IterableIterator<[number, (TypeForElementsIterable<T> | undefined)]> {
+): IterableIterator<[number, TypeForElementsIterable<T> | undefined]> {
 	let counter = 0;
 
 	if (iterable === null || iterable === undefined) {
@@ -19,11 +19,13 @@ function enumerate<T extends Iterable<any>>(
 
 	return {
 		/* eslint-disable */
-		[Symbol.iterator](): IterableIterator<[number, (TypeForElementsIterable<T> | undefined)]> {
+		[Symbol.iterator](): IterableIterator<
+			[number, TypeForElementsIterable<T> | undefined]
+		> {
 			return this;
 		},
 		/* eslint-enable */
-		next(): { value: [number, (TypeForElementsIterable<T> | undefined)]; done: boolean } {
+		next(): { value: [number, TypeForElementsIterable<T> | undefined]; done: boolean } {
 			const currentCounter = counter;
 
 			const { value, done } = iteratorIterable.next();
