@@ -18,9 +18,11 @@ function enumerate<T extends Iterable<any>>(
 	const iteratorIterable = iterable[Symbol.iterator]();
 
 	return {
+		/* eslint-disable */
 		[Symbol.iterator](): IterableIterator<[number, (TypeForElementsIterable<T> | undefined)]> {
 			return this;
 		},
+		/* eslint-enable */
 		next(): { value: [number, (TypeForElementsIterable<T> | undefined)]; done: boolean } {
 			const currentCounter = counter;
 
