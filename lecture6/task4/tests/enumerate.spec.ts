@@ -9,7 +9,7 @@ describe("Проверяю функцию enumerate:", () => {
 
 		/* eslint-disable */
 		const enumerateIterator: IterableIterator<
-			[number, TypeForElementsIterable<typeof randomIterator>]
+			[number, (TypeForElementsIterable<typeof randomIterator> | undefined)]
 		> = enumerate(randomIterator);
 		/* eslint-enable */
 
@@ -22,7 +22,7 @@ describe("Проверяю функцию enumerate:", () => {
 
 		/* eslint-disable */
 		const enumerateIterator: IterableIterator<
-			[number, TypeForElementsIterable<typeof randomIterator>]
+			[number, (TypeForElementsIterable<typeof randomIterator> | undefined)]
 		> = enumerate(randomIterator);
 		/* eslint-enable */
 

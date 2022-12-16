@@ -27,4 +27,12 @@ describe("Проверяю функцию filter:", () => {
 
 		expect(arrayFilter.every(fnPredicate)).toBe(true);
 	});
+
+	test("Проверяю как отработает filter с пустым итерируемым объектом.", () => {
+		const fnPredicate = <T>(el: T): boolean => {
+			return el < 30;
+		};
+
+		expect([...filter([], fnPredicate)]).toEqual([]);
+	});
 });

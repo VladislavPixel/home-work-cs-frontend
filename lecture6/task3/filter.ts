@@ -3,7 +3,7 @@ import type { TypeForElementsIterable, TypeFnPredicate } from "../types";
 function filter<T extends Iterable<any>>(
 	iterable: T,
 	callback: TypeFnPredicate<T>
-): IterableIterator<TypeForElementsIterable<T>> {
+): IterableIterator<undefined | TypeForElementsIterable<T>> {
 	if (iterable === null || iterable === undefined) {
 		throw new Error("The first argument of the take function must be iterable.");
 	}
@@ -17,14 +17,26 @@ function filter<T extends Iterable<any>>(
 	const iteratorIterable = iterable[Symbol.iterator]();
 
 	return {
-		[Symbol.iterator](): IterableIterator<TypeForElementsIterable<T>> {
+		[Symbol.iterator](): IterableIterator<undefined | TypeForElementsIterable<T>> {
 			return this;
 		},
-		next(): { value: TypeForElementsIterable<T>; done: false } {
-			let currentValueForIterable = iteratorIterable.next().value;
+		next(): { value: undefined | TypeForElementsIterable<T>; done: boolean } {
+			const result = iteratorIterable.next();
+
+			if (result.done) {
+				return { value: undefined, done: true };
+			}
+
+			let currentValueForIterable = result.value;
 
 			while (!callback(currentValueForIterable)) {
-				currentValueForIterable = iteratorIterable.next().value;
+				const { value, done } = iteratorIterable.next();
+
+				if (done) {
+					return { value: undefined, done: true };
+				}
+
+				currentValueForIterable = value;
 			}
 
 			return { value: currentValueForIterable, done: false };
