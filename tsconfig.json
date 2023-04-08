@@ -4,7 +4,6 @@
 		"strict": true,
 		"experimentalDecorators": true,
 		"noImplicitOverride": true,
-		"importsNotUsedAsValues": "error",
 		"outDir": "./build-dz",
 		"skipLibCheck": true,
 		"esModuleInterop": true,
