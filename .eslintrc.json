@@ -28,6 +28,10 @@
 		"no-new-func": 0,
 		"no-tabs": 0,
 		"no-useless-escape": 0,
+		"no-throw-literal": "off",
+		"generator-star-spacing": ["error", { "before": false, "after": true }],
+		"n/no-callback-literal": 0,
+		"no-useless-catch": 0,
 		"@typescript-eslint/lines-between-class-members": [
 			"error",
 			"always",
@@ -66,6 +70,11 @@
 		"@typescript-eslint/no-non-null-assertion": 0,
 		"@typescript-eslint/restrict-template-expressions": 0,
 		"@typescript-eslint/method-signature-style": ["error", "method"],
-		"@typescript-eslint/no-implied-eval": 0
+		"@typescript-eslint/no-implied-eval": 0,
+		"@typescript-eslint/no-extraneous-class": 0,
+		"@typescript-eslint/no-throw-literal": 0,
+		"@typescript-eslint/restrict-plus-operands": 0,
+		"@typescript-eslint/no-unnecessary-type-assertion": 0,
+		"@typescript-eslint/no-base-to-string": 0
 	}
 }

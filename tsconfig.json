@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"strict": true,
 		"experimentalDecorators": true,
 		"noImplicitOverride": true,
 		"outDir": "./build-dz",

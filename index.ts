@@ -25,6 +25,9 @@ import { MyRange } from "./lecture6/task5/range";
 import { seq } from "./lecture6/task6/seq";
 import { zip } from "./lecture6/task7/zip";
 import { mapSeq } from "./lecture6/task8/map-seq";
+import { Result } from "./lecture8/task1/container-result";
+import { executor } from "./lecture8/task2/executor";
+import { executorUniversal } from "./lecture8/task3/executor-universal";
 
 export {
 	LinkedListWithIterator,
@@ -54,5 +57,8 @@ export {
 	MyRange,
 	seq,
 	zip,
-	mapSeq
+	mapSeq,
+	Result,
+	executor,
+	executorUniversal
 };
