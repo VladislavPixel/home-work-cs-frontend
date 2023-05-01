@@ -28,6 +28,13 @@ import { mapSeq } from "./lecture6/task8/map-seq";
 import { Result } from "./lecture8/task1/container-result";
 import { executor } from "./lecture8/task2/executor";
 import { executorUniversal } from "./lecture8/task3/executor-universal";
+import { sleep } from "./lecture9/task1/sleep";
+import { timeout } from "./lecture9/task2/timeout";
+import { clearImmediate } from "./lecture9/task3/clear-immediate";
+import { setImmediate } from "./lecture9/task3/set-immediate";
+import { promisify } from "./lecture9/task4/promisify";
+import { SyncPromise } from "./lecture9/task56/sync-promise";
+import { allLimit } from "./lecture9/task7/all-limit";
 
 export {
 	LinkedListWithIterator,
@@ -60,5 +67,12 @@ export {
 	mapSeq,
 	Result,
 	executor,
-	executorUniversal
+	executorUniversal,
+	sleep,
+	timeout,
+	clearImmediate,
+	setImmediate,
+	promisify,
+	SyncPromise,
+	allLimit
 };
