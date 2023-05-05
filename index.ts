@@ -35,6 +35,17 @@ import { setImmediate } from "./lecture9/task3/set-immediate";
 import { promisify } from "./lecture9/task4/promisify";
 import { SyncPromise } from "./lecture9/task56/sync-promise";
 import { allLimit } from "./lecture9/task7/all-limit";
+import { on } from "./lecture10/task1/on";
+import { once } from "./lecture10/task1/once";
+import { takeAsync } from "./lecture10/task2/take";
+import { seqAsync } from "./lecture10/task2/seq";
+import { mapAsync } from "./lecture10/task2/map";
+import { filterAsync } from "./lecture10/task2/filter";
+import { anyAsync } from "./lecture10/task2/any";
+import { every } from "./lecture10/task3/every";
+import { onlyEvent } from "./lecture10/task3/only-event";
+import { repeat } from "./lecture10/task3/repeat";
+import { forEach } from "./lecture10/task3/for-each-async";
 
 export {
 	LinkedListWithIterator,
@@ -74,5 +85,16 @@ export {
 	setImmediate,
 	promisify,
 	SyncPromise,
-	allLimit
+	allLimit,
+	on,
+	once,
+	takeAsync,
+	seqAsync,
+	mapAsync,
+	filterAsync,
+	anyAsync,
+	every,
+	onlyEvent,
+	repeat,
+	forEach
 };
