@@ -2,6 +2,8 @@
 
 ## Основные модули.
 
-**Базовый компонент React с поддержкой посетителей. Стандартные посетители для добавления обработчиков событий:** [_перейти_](./my-app/src/components/some-btn.tsx) [_перейти_](./my-app/src/visitors/on.ts) [_перейти_](./my-app/src/visitors/once.ts) [_перейти_](./my-app/src/visitors/in-view.ts)
+**Базовый компонент React с поддержкой посетителей. Стандартные посетители для добавления обработчиков событий:** [_перейти_](./my-app/src/components/some-btn.tsx) [_перейти_](./my-app/src/visitors/on.ts) [_перейти_](./my-app/src/visitors/once.ts)
+
+**Стандартный посетитель для компонента React, который интегрирует IntersectionObserver.:** [_перейти_](./my-app/src/visitors/in-view.ts)
 
 ## Тесты.
