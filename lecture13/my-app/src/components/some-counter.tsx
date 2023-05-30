@@ -2,13 +2,13 @@ import { useEffect, useState, useCallback } from "react";
 import { eventEmitter } from "../utils/event-emitter";
 
 function SomeCounter(): JSX.Element {
-	const [counter, setCounter] = useState(0);
+	const [counter, setCounter] = useState<number>(0);
 
 	const memoCallback = useCallback(() => {
 		setCounter((prevState) => prevState + 1);
 	}, []);
 
-	useEffect(() => {
+	useEffect((): void => {
 		eventEmitter.on("update-counter", memoCallback);
 	}, [memoCallback]);
 

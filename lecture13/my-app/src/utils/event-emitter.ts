@@ -1,7 +1,9 @@
-class EventEmitterPro {
-	#handlers = new Map();
+import { cb, IEventEmitterPro } from "../types";
 
-	on(event, cb) {
+class EventEmitterPro implements IEventEmitterPro {
+	#handlers: Map<PropertyKey, Set<cb>> = new Map();
+
+	on(event: string, cb: cb): cb {
 		const store = this.#getHandlersStore(event);
 
 		if (!store.has(cb)) {
@@ -11,8 +13,8 @@ class EventEmitterPro {
 		return cb;
 	};
 
-	once(event, cb) {
-		const wrapper = (...args) => {
+	once(event: string, cb: cb): cb {
+		const wrapper = (...args: any[]): void => {
 			try {
 				cb(...args);
 			} finally {
@@ -23,7 +25,7 @@ class EventEmitterPro {
 		return this.on(event, wrapper);
 	};
 
-	off(event, cb) {
+	off(event: string, cb: cb): void {
 		if (event === undefined || event === null) {
 			this.#handlers.clear();
 
@@ -41,7 +43,7 @@ class EventEmitterPro {
 		store.delete(cb);
 	};
 
-	emit(event, ...data) {
+	emit(event: string, ...data: any[]): void {
 		const store = this.#getHandlersStore(event);
 
 		store.forEach(element => {
@@ -49,7 +51,7 @@ class EventEmitterPro {
 		});
 	};
 
-	#getHandlersStore(event) {
+	#getHandlersStore(event: string): Set<cb> {
 		let store = this.#handlers.get(event);
 
 		if (store === undefined) {
@@ -62,6 +64,6 @@ class EventEmitterPro {
 	};
 };
 
-const eventEmitter = new EventEmitterPro();
+const eventEmitter: IEventEmitterPro = new EventEmitterPro();
 
 export { eventEmitter };

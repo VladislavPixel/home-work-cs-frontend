@@ -1,14 +1,15 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { eventEmitter } from "../utils/event-emitter";
 
-const SomeBtn = forwardRef((_, ref) => {
-	function handlerSubmitForm(e) {
+const SomeBtn: React.ForwardRefExoticComponent<React.RefAttributes<unknown>> & Record<any, any> = forwardRef((_, ref) => {
+	function handlerSubmitForm(e: React.FormEvent): void {
 		e.preventDefault();
 
 		eventEmitter.emit("submit-counter");
 	};
 
 	return (
+		// @ts-ignore
 		<div ref={ref} className="wrapper-btns">
 			<button onClick={() => {
 				eventEmitter.emit("update-counter");

@@ -1,11 +1,13 @@
-function inView(settings) {
+import { InViewFnArg, IResultVisitor } from "../types";
+
+function inView(settings: InViewFnArg): IResultVisitor {
 	const { delay, entered, leaved } = settings;
 
-	let isFirstTrigger = true;
+	let isFirstTrigger: boolean = true;
 
 	return {
-		visit(ctx) {
-			const callback = (entries, observer) => {
+		visit(ctx: Record<any, any>): void {
+			const callback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver): void => {
 				entries.forEach((entry) => {
 					const { isIntersecting } = entry;
 
@@ -22,7 +24,7 @@ function inView(settings) {
 				});
 			};
 
-			setTimeout(() => {
+			setTimeout((): void => {
 				const observer = new IntersectionObserver(callback);
 
 				const target = ctx.element;

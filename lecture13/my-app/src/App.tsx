@@ -1,3 +1,4 @@
+import React from "react";
 import { GreySquare } from "./components/grey-square";
 import { SomeCounter } from "./components/some-counter";
 import { on } from "./visitors/on";
@@ -7,19 +8,19 @@ import { withAccept } from "./components/hoc/with-accept";
 import { SomeBtn } from "./components/some-btn";
 
 function App(): JSX.Element {
-	const cb1 = () => {
+	const cb1 = (): void => {
 		console.log("Visitor при срабатывании click");
 	};
 
-	const cb2 = () => {
+	const cb2 = (): void => {
 		console.log("Visitor при срабатывании submit");
 	};
 
-	const handlerEntered = () => {
+	const handlerEntered = (): void => {
 		console.log("В поле моей видимости ваш отмеченный компонент!!!!!!!!!!!");
 	};
 
-	const handlerLeaved = () => {
+	const handlerLeaved = (): void => {
 		console.log("Ваш отмеченный компонент ушел из поля моей видимости................");
 	};
 
@@ -35,13 +36,13 @@ function App(): JSX.Element {
 
 	const SomeBtnWithAccept = withAccept(SomeBtn, visitors);
 
-  return (
-    <div className="app">
+	return (
+		<div className="app">
 			<GreySquare />
 			<SomeCounter />
 			<SomeBtnWithAccept />
-    </div>
-  );
+		</div>
+	);
 }
 
 export default App;
