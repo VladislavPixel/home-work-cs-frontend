@@ -8,7 +8,7 @@
 		"esModuleInterop": true,
 		"allowJs": true
 	},
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "lecture13/**/*"],
 	"include": [
 		"index.ts",
 		"lecture1/**/*",
