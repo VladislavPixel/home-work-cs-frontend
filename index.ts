@@ -46,6 +46,15 @@ import { every } from "./lecture10/task3/every";
 import { onlyEvent } from "./lecture10/task3/only-event";
 import { repeat } from "./lecture10/task3/repeat";
 import { forEach } from "./lecture10/task3/for-each-async";
+import { Cache } from "./lecture12/task1/cache";
+import { LRUCache } from "./lecture12/task1/lru-cache";
+import { MRUCache } from "./lecture12/task1/mru-cache";
+import { NeverCache } from "./lecture12/task1/never-cache";
+import { fetchEngine } from "./lecture12/task2/fetch-engine";
+import { xhrEngine } from "./lecture12/task2/xhr-engine";
+import { ParamsRequest } from "./lecture12/task3/params-request";
+import { RequestEssense } from "./lecture12/task3/request-essense";
+import { ResponseEssence } from "./lecture12/task3/response-essense";
 
 export {
 	LinkedListWithIterator,
@@ -96,5 +105,14 @@ export {
 	every,
 	onlyEvent,
 	repeat,
-	forEach
+	forEach,
+	Cache,
+	LRUCache,
+	MRUCache,
+	NeverCache,
+	fetchEngine,
+	xhrEngine,
+	ParamsRequest,
+	RequestEssense,
+	ResponseEssence
 };

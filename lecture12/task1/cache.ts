@@ -2,13 +2,13 @@ import { DoubleLinkedList } from "../double-linked-list/double-linked-list";
 import { ICache, IDoubleLinkedList, INode, IValueCache } from "../types";
 
 class Cache<T> implements ICache<T> {
-	store: IDoubleLinkedList<T> = new DoubleLinkedList();
+	store: IDoubleLinkedList<IValueCache<T>> = new DoubleLinkedList();
 
 	length: number = 0;
 
 	maxSize: number = 1;
 
-	hashTable: Map<PropertyKey, INode<IValueCache<INode<T>>>> = new Map();
+	hashTable: Map<PropertyKey, INode<IValueCache<T>>> = new Map();
 
 	constructor(maxSize: number = 1) {
 		this.maxSize = Math.abs(maxSize);
@@ -24,7 +24,7 @@ class Cache<T> implements ICache<T> {
 		return true;
 	};
 
-	get(searchKey: PropertyKey): INode<T> {
+	get(searchKey: PropertyKey): null | T {
 		const element = this.hashTable.get(searchKey);
 
 		if (!element) {
@@ -33,7 +33,7 @@ class Cache<T> implements ICache<T> {
 
 		const result = element.value.value;
 
-		this.store.moveToBeginning<IValueCache<INode<T>>>(element);
+		this.store.moveToBeginning(element);
 
 		return result;
 	};
@@ -50,11 +50,11 @@ class Cache<T> implements ICache<T> {
 		return this.maxSize;
 	};
 
-	getHead(): null | INode<T> {
+	getHead(): null | INode<IValueCache<T>> {
 		return this.store.getHead();
 	};
 
-	getTail(): null | INode<T> {
+	getTail(): null | INode<IValueCache<T>> {
 		return this.store.getTail();
 	};
 };

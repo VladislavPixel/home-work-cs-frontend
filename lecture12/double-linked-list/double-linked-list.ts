@@ -127,7 +127,7 @@ class DoubleLinkedList<T> implements IDoubleLinkedList<T> {
 		return node;
 	};
 
-	moveToBeginning<A>(node: INode<A>): INode<A> {
+	moveToBeginning(node: INode<T>): INode<T> {
 		if (node === this.getHead()) {
 			return node;
 		}

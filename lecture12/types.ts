@@ -19,19 +19,36 @@ export interface IDoubleLinkedList<T = unknown> {
 	removeLast(): INode<T>;
 	removeFirst(): INode<T>;
 	removeByNode(node: INode<T>): INode<T>;
-	moveToBeginning<A>(node: INode<A>): INode<A>;
+	moveToBeginning(node: INode<T>): INode<T>;
 };
 
 export interface ICache<T = unknown> {
-	store: IDoubleLinkedList<T>;
+	store: IDoubleLinkedList<IValueCache<T>>;
 	length: number;
 	maxSize: number;
-	hashTable: Map<PropertyKey, INode<IValueCache<INode<T>>>>;
+	hashTable: Map<PropertyKey, INode<IValueCache<T>>>;
 	clear(): boolean;
-	get(searchKey: PropertyKey): INode<T>;
+	get(searchKey: PropertyKey): null | T;
 	isFully(): boolean;
 	getSize(): number;
 	getMaxSize(): number;
-	getHead(): null | INode<T>;
-	getTail(): null | INode<T>;
+	getHead(): null | INode<IValueCache<T>>;
+	getTail(): null | INode<IValueCache<T>>;
 };
+
+export interface ICacheConcrate<T = unknown> {
+	set(key: PropertyKey, value: T): number;
+};
+
+export interface IResponseEssence {
+	response: Response;
+	decoding(): Promise<Response>;
+	jsonUnpacking(): Promise<any>;
+	textUnpacking(): Promise<string>;
+	arraybufferUnpacking(): Promise<ArrayBuffer>;
+	blobUnpacking(): Promise<Blob>;
+	formDataUnpacking(): Promise<Response>;
+	documentUnpacking(): Promise<Response>;
+};
+
+export type EngineRequestFNType = (url: string, params: RequestInit) => Promise<Response>;
