@@ -55,6 +55,13 @@ import { xhrEngine } from "./lecture12/task2/xhr-engine";
 import { ParamsRequest } from "./lecture12/task3/params-request";
 import { RequestEssense } from "./lecture12/task3/request-essense";
 import { ResponseEssence } from "./lecture12/task3/response-essense";
+import { mixin } from "./lecture14/task1/mixin";
+import { ttl } from "./lecture14/task2/ttl";
+import { persistent } from "./lecture14/task2/persistent";
+import { derive } from "./lecture14/task3/derive";
+import { DuckLike } from "./lecture14/task3/duck-like";
+import { Duckable } from "./lecture14/task3/duckable";
+import { Fetch } from "./lecture14/task4/fetch-class";
 
 export {
 	LinkedListWithIterator,
@@ -114,5 +121,12 @@ export {
 	xhrEngine,
 	ParamsRequest,
 	RequestEssense,
-	ResponseEssence
+	ResponseEssence,
+	mixin,
+	ttl,
+	persistent,
+	derive,
+	DuckLike,
+	Duckable,
+	Fetch
 };
