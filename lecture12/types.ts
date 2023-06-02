@@ -51,4 +51,6 @@ export interface IResponseEssence {
 	documentUnpacking(): Promise<Response>;
 };
 
+export type CacheTypes<T = unknown> = ICache<T> & ICacheConcrate<T>;
+
 export type EngineRequestFNType = (url: string, params: RequestInit) => Promise<Response>;
