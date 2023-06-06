@@ -78,6 +78,7 @@
 		"@typescript-eslint/no-base-to-string": 0,
 		"@typescript-eslint/promise-function-async": 0,
 		"@typescript-eslint/no-floating-promises": 0,
-		"@typescript-eslint/no-this-alias": 0
+		"@typescript-eslint/no-this-alias": 0,
+		"@typescript-eslint/no-invalid-void-type": 0
 	}
 }

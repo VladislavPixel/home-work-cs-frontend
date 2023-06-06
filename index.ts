@@ -62,6 +62,7 @@ import { derive } from "./lecture14/task3/derive";
 import { DuckLike } from "./lecture14/task3/duck-like";
 import { Duckable } from "./lecture14/task3/duckable";
 import { Fetch } from "./lecture14/task4/fetch-class";
+import { EventEmitter } from "./lecture15/event-emitter";
 
 export {
 	LinkedListWithIterator,
@@ -128,5 +129,6 @@ export {
 	derive,
 	DuckLike,
 	Duckable,
-	Fetch
+	Fetch,
+	EventEmitter
 };
